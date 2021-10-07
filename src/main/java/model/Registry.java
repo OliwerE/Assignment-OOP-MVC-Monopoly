@@ -26,4 +26,8 @@ public class Registry {
       return false;
     }
   }
+
+  public ArrayList<Member> getMembers() {
+    return new ArrayList<Member>(members); // Iterator istället??
+  }
 }

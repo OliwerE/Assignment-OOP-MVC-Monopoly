@@ -19,7 +19,9 @@ public class Registry {
     if (input == 1) {
       // verbose member list
     } else if (input == 2) {
-      // Compact member list
+      console.printCompactMemberList(registry.getMembers());
+
+      // TODO: Add list nav!
     } else if (input == 3) {
       console.print(registry.getCreateMemberText());
 

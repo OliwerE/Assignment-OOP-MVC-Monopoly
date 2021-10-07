@@ -6,10 +6,13 @@ public class Registry {
 
   public void start() {
       console.printLine("---------- Member Registry ----------");
-      console.print("Verbose member list (1), compact member list (2), create member (3) exit (4): ");
-      Integer i = console.getInteger();
-      System.out.println("valde: " + i);
-      handleMainMenuInput(i);
+      mainMenuInput();
+  }
+
+  private void mainMenuInput() {
+    console.print("Verbose member list (1), compact member list (2), create member (3) exit (4): ");
+    Integer i = console.getInteger();
+    handleMainMenuInput(i); 
   }
 
   private void handleMainMenuInput(Integer input) {
@@ -19,9 +22,17 @@ public class Registry {
       // Compact member list
     } else if (input == 3) {
       console.print(registry.getCreateMemberText());
-      // String name = console.getString();
-      // console.printLine(name);
-      registry.createMember(console.getString());
+
+      Boolean isSuccess = registry.createMember(console.getString());
+
+      if(isSuccess) {
+        console.printLine("Member created!");
+        mainMenuInput();
+      } else {
+        console.printLine("Name is too short!"); // kan inte inträffa pga scanner.next !!
+        mainMenuInput();
+      }
+
     } else if (input == 4) {
       System.out.println("Closes application...");
       // persistence?

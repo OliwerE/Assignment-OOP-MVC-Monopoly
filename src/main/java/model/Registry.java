@@ -10,16 +10,13 @@ public class Registry {
     // constructor
   }
 
-  public String getCreateMemberText() {
-    return "Create Member:\nEnter name: ";
-  }
-
-  public Boolean createMember(String name) { // TODO: Add personal number!!!
+  public Boolean createMember(String name, Integer personalNumber) { // TODO: Add personal number!!!
     if (name.length() > 0) {
       Member m = new Member();
       m.setId(nextMemberId);
       nextMemberId += 1;
       m.setName(name);
+      m.setPersonalNumber(personalNumber);
       members.add(m);
       return true; // true if success
     } else {

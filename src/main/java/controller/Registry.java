@@ -17,14 +17,18 @@ public class Registry {
 
   private void handleMainMenuInput(Integer input) {
     if (input == 1) {
-      // verbose member list
+      console.printVerboseMemberList(registry.getMembers());
+      listMenuInput();
     } else if (input == 2) {
       console.printCompactMemberList(registry.getMembers());
       listMenuInput();
     } else if (input == 3) {
-      console.print(registry.getCreateMemberText());
+      console.print("Create Member:\nEnter name: ");
+      String name = console.getString();
+      console.print("Enter personal number: ");
+      Integer personalNumber = console.getInteger();
 
-      Boolean isSuccess = registry.createMember(console.getString());
+      Boolean isSuccess = registry.createMember(name, personalNumber);
 
       if(isSuccess) {
         console.printLine("Member created!");

@@ -34,12 +34,25 @@ public class Console {
     }
   }
 
+  public void printVerboseMemberList(ArrayList<Member> members) {
+    System.out.println("Verbose member list:");
+    if (members.size() > 0) {
+      for (int i = 0; i < members.size(); i++) {
+        // test:
+        System.out.println(
+            "Name: " + members.get(i).getName() + " , personal number: " + members.get(i).getPersonalNumber() + " , id: " + members.get(i).getId() + " , boat information FIX!");
+      }
+    } else {
+      System.out.println("Registry is empty.");
+    }
+  }
+
   public void printCompactMemberList(ArrayList<Member> members) {
     System.out.println("Compact member list:");
     if (members.size() > 0) {
       for (int i = 0; i < members.size(); i++) {
         // test:
-        System.out.println("Name: " + members.get(i).getName() + " , id: " + members.get(i).getId());
+        System.out.println("Name: " + members.get(i).getName() + " , id: " + members.get(i).getId() + " , number of boats: " + 0);
       }
     } else {
       System.out.println("Registry is empty.");

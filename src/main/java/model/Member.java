@@ -3,6 +3,7 @@ package model;
 public class Member {
   private Integer id;
   private String name;
+  private Integer personalNumber;
   // private ArrayList<Boat> boats = new ArrayList<>();
 
   public Integer getId() {
@@ -19,5 +20,13 @@ public class Member {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public void setPersonalNumber(Integer personalNumber) {
+    this.personalNumber = personalNumber;
+  }
+
+  public Integer getPersonalNumber() {
+    return personalNumber;
   }
 }

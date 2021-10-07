@@ -10,8 +10,7 @@ public class App {
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    view.Console c = new view.Console();
     Registry c_registry = new Registry();
-    c_registry.start(c);
+    c_registry.start();
   }
 }

@@ -6,9 +6,12 @@ import java.util.Scanner;
 public class Console {
   Scanner scanner = new Scanner(System.in);
 
-  public void mainMenu() {
-    System.out.println("---------- Member Registry ----------");
-    System.out.print("Verbose member list (1), compact member list (2), exit (3): ");
+  public void printLine(String s) {
+    System.out.println(s);
+  }
+
+  public void print(String s) {
+    System.out.print(s);
   }
 
   public Integer getInteger() {
@@ -16,7 +19,17 @@ public class Console {
       return scanner.nextInt();
     } catch (InputMismatchException e) {
       System.out.println(e);
-      return -1; // Error
+      return -1;
     }
   }
+
+  public String getString() {
+    try {
+      return scanner.next();
+    } catch (InputMismatchException e) {
+      System.out.println(e);
+      return "";
+    }
+  }
+
 }

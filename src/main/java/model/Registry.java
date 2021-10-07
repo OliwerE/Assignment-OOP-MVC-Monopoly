@@ -44,4 +44,8 @@ public class Registry {
       return false;
     }
   }
+
+  public Member getMemberById(Integer memberId) {
+    return members.get(memberId - 1);
+  }
 }

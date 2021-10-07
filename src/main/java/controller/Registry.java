@@ -1,5 +1,7 @@
 package controller;
 
+import model.Member;
+
 public class Registry {
   private model.Registry registry = new model.Registry();
   private view.Console console = new view.Console();
@@ -29,9 +31,10 @@ public class Registry {
     } else if (input == 2) {
       console.printCompactMemberList(registry.getMembers());
       listMenuInput();
-    }else if (input == 3) {
+    } else if (input == 3) {
       System.out.println("Closes application...");
       // persistence?
+      console.closeScanner();
       System.exit(0);
     } else {
       // error
@@ -39,17 +42,19 @@ public class Registry {
   }
 
   private void listMenuInput() {
-    console.print("Show Member info (1), change member info (2), create member (3), delete member (4), register boat (5), main Menu (6): ");
+    console.print("Show member (1), create member (2), delete member (3), main Menu (4): ");
     Integer i = console.getInteger();
     handleListMenuInput(i);
   }
 
   private void handleListMenuInput(Integer input) {
     if (input == 1) {
-      // show member info
+      console.print("Select member id: ");
+      Integer memberId = console.getInteger();
+      Member member = registry.getMemberById(memberId);
+      console.printMember(member);
+      memberMenuInput(member);
     } else if (input == 2) {
-      // change member info
-    } else if (input == 3) {
       console.print("Create Member:\nEnter name: ");
       String name = console.getString();
       console.print("Enter personal number: ");
@@ -65,7 +70,7 @@ public class Registry {
         mainMenuInput();
       }
 
-    } else if (input == 4) {
+    } else if (input == 3) {
       Boolean isRemoved = deleteMember();
       if (isRemoved) {
         console.printLine("Member removed!");
@@ -74,12 +79,28 @@ public class Registry {
       }
       console.printCompactMemberList(registry.getMembers()); // byt till metod! code dup.
       listMenuInput();
-    } else if (input == 5) {
-      // register boat
-    } else if (input == 6) {
+    } else if (input == 4) {
       mainMenuInput();
     } else {
       // error
+    }
+  }
+
+  private void memberMenuInput(Member m) {
+    console.print("Register boat (1), Change info (2), back (3): ");
+    Integer i = console.getInteger();
+    handleMemberMenuInput(i, m);
+  }
+
+  private void handleMemberMenuInput(Integer input, Member m) {
+    if (input == 1) {
+      // register boat
+    } else if (input == 2) {
+      // change info
+    } else if (input == 3) {
+      // BACK
+    } else {
+      // ERROR
     }
   }
 

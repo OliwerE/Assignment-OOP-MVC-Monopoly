@@ -60,4 +60,14 @@ public class Console {
     }
   }
 
+  public void printMember(Member m) {
+    System.out.println("--------");
+    System.out.println("Name: " + m.getName() + "\nPersonal number: " + m.getPersonalNumber() + "\nId: " + m.getId() + "\nBoats: ...");
+    System.out.println("--------");
+  }
+
+  public void closeScanner() {
+    scanner.close();
+  }
+
 }

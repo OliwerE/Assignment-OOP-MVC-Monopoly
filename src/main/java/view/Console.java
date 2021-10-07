@@ -38,9 +38,9 @@ public class Console {
     System.out.println("Verbose member list:");
     if (members.size() > 0) {
       for (int i = 0; i < members.size(); i++) {
-        // test:
+        System.out.println("--------");
         System.out.println(
-            "Name: " + members.get(i).getName() + " , personal number: " + members.get(i).getPersonalNumber() + " , id: " + members.get(i).getId() + " , boat information FIX!");
+            "Name: " + members.get(i).getName() + "\npersonal number: " + members.get(i).getPersonalNumber() + "\nid: " + members.get(i).getId() + "\nboat information: FIX!");
       }
     } else {
       System.out.println("Registry is empty.");
@@ -51,9 +51,10 @@ public class Console {
     System.out.println("Compact member list:");
     if (members.size() > 0) {
       for (int i = 0; i < members.size(); i++) {
-        // test:
-        System.out.println("Name: " + members.get(i).getName() + " , id: " + members.get(i).getId() + " , number of boats: " + 0);
+        System.out.println("--------");
+        System.out.println("Name: " + members.get(i).getName() + "\nid: " + members.get(i).getId() + "\nnumber of boats: " + 0);
       }
+      System.out.println("--------");
     } else {
       System.out.println("Registry is empty.");
     }

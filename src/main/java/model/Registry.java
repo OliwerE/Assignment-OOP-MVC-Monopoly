@@ -14,7 +14,7 @@ public class Registry {
     return "Create Member:\nEnter name: ";
   }
 
-  public Boolean createMember(String name) {
+  public Boolean createMember(String name) { // TODO: Add personal number!!!
     if (name.length() > 0) {
       Member m = new Member();
       m.setId(nextMemberId);
@@ -29,5 +29,22 @@ public class Registry {
 
   public ArrayList<Member> getMembers() {
     return new ArrayList<Member>(members); // Iterator istället??
+  }
+
+  public boolean deleteMember(Integer memberId) {
+    Boolean removed = false;
+    for (Member m : members) {
+      if (memberId == m.getId()) {
+        members.remove(m);
+        removed = true;
+        break;
+      }
+    }
+
+    if (removed) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

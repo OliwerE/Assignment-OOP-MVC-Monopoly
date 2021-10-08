@@ -20,11 +20,11 @@ public class Member {
     return name;
   }
 
-  protected void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
-  protected void setPersonalNumber(Integer personalNumber) {
+  public void setPersonalNumber(Integer personalNumber) {
     this.personalNumber = personalNumber;
   }
 

@@ -106,7 +106,33 @@ public class Registry {
       }
       memberMenuInput(m);
     } else if (input == 2) {
-      // change info
+      console.print(registry.getUpdateMemberText());
+      Integer alt = console.getInteger();
+
+      if (alt == 1) {
+        // Change name
+        System.out.print("Enter new name: ");
+        m.setName(console.getString());
+        memberMenuInput(m);
+      } else if (alt == 2) {
+        // change personal number
+        System.out.print("Enter new personal number: ");
+        m.setPersonalNumber(console.getInteger());
+        memberMenuInput(m);
+      } else if (alt == 3) {
+        // change boat info
+        if (m.getBoats().size() > 0) {
+          System.out.print("Select boat (1-" + Integer.toString(m.getBoats().size() + 1) + "): ");
+          m.setPersonalNumber(console.getInteger());
+        } else {
+          System.out.println("Member does not have registered boats!");
+          memberMenuInput(m);
+        }
+        
+      } else {
+        // ERROR!
+      }
+
     } else if (input == 3) {
       mainMenuInput();
     } else {

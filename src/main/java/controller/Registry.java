@@ -109,7 +109,7 @@ public class Registry {
     } else if (input == 4) {
       changeName(member);
     } else if (input == 5) {
-      // change personal number
+      changePersonalNumber(member);
     } else if (input == 6) {
       // back
       backToMemberList(isVerbose);
@@ -139,11 +139,11 @@ public class Registry {
   }
 
   private void changeName(Member member) {
-
+    member.setName(v_console.getMemberName());
   }
 
-  private void changePersonalNumber() {
-
+  private void changePersonalNumber(Member member) {
+    member.setPersonalNumber(v_console.getPersonalNumber());
   }
 
   private void createMember() {

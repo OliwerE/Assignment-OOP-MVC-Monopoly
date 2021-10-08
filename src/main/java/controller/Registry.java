@@ -68,7 +68,7 @@ public class Registry {
     int input = v_console.getIntInput();
 
     if (input == 1) {
-      showMember();
+      showMember(isVerbose);
     } else if (input == 2) {
       createMember();
     } else if (input == 3) {
@@ -79,6 +79,10 @@ public class Registry {
       v_console.displayMenuInputError(input);
     }
 
+    backToMemberList(isVerbose);
+  }
+
+  private void backToMemberList(Boolean isVerbose) {
     if (isVerbose) {
       verboseMemberList();
     } else {
@@ -86,12 +90,12 @@ public class Registry {
     }
   }
 
-  private void showMember() {
+  private void showMember(Boolean isVerbose) {
     v_console.displayMember(m_registry.getMemberById(v_console.getIntInput()));
-    memberMenu();
+    memberMenu(isVerbose);
   }
 
-  private void memberMenu() {
+  private void memberMenu(Boolean isVerbose) {
     v_console.displayMemberMenu();
     int input = v_console.getIntInput();
 
@@ -107,6 +111,7 @@ public class Registry {
       // change personal number
     } else if (input == 6) {
       // back
+      backToMemberList(isVerbose);
     } else {
       v_console.displayMenuInputError(input);
     }

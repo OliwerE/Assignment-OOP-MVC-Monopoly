@@ -101,8 +101,9 @@ public class Console {
     System.out.print("Register boat (1), change boat type (2), change boat lenght (3), Change name (4), change personal number (5), back (6): ");
   }
 
-  public void displayEnterName() {
+  public String getMemberName() {
     System.out.print("Enter name: ");
+    return getStringInput();
   }
 
   public String getStringInput() {
@@ -114,8 +115,9 @@ public class Console {
     }
   }
 
-  public void displayEnterPersonalNumber() {
+  public int getPersonalNumber() {
     System.out.print("Enter personal number: ");
+    return getIntInput();
   }
 
   public void displayRegisterMemberSuccess() {

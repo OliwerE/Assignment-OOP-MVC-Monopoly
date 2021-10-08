@@ -107,7 +107,7 @@ public class Registry {
     } else if (input == 3) {
       // change boat length
     } else if (input == 4) {
-      // change name
+      changeName(member);
     } else if (input == 5) {
       // change personal number
     } else if (input == 6) {
@@ -138,7 +138,7 @@ public class Registry {
 
   }
 
-  private void changeName() {
+  private void changeName(Member member) {
 
   }
 
@@ -147,11 +147,7 @@ public class Registry {
   }
 
   private void createMember() {
-    v_console.displayEnterName();
-    String name = v_console.getStringInput();
-    v_console.displayEnterPersonalNumber();
-    int personalNumber = v_console.getIntInput();
-    Boolean isRegistered = m_registry.createMember(name, personalNumber);
+    Boolean isRegistered = m_registry.createMember(v_console.getMemberName(), v_console.getPersonalNumber());
     if (isRegistered) {
       v_console.displayRegisterMemberSuccess();
     } else {

@@ -48,8 +48,4 @@ public class Registry {
   public Member getMemberById(int memberId) {
     return members.get(memberId - 1);
   }
-
-  public String getUpdateMemberText() {
-    return "Change name (1), change personal number (2), change boat information (3): ";
-  }
 }

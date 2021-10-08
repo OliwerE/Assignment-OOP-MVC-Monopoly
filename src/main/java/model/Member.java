@@ -58,7 +58,7 @@ public class Member {
     return true;
   }
 
-  public Boolean changeBoatType(Boat b, Integer newType) {
+  public Boolean changeBoatType(Boat b, Integer newType) { // flytta till Boat?
     if (newType == 1) {
       b.setBoatType("Sailboat");
     } else if (newType == 2) {
@@ -71,5 +71,23 @@ public class Member {
       return false;
     }
     return true;
+  }
+
+  public Boolean changeBoatLength(Boat b, Integer newLength) { // flytta till Boat?
+    if (newLength > 0) {
+      b.setBoatLength(newLength);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public Boolean removeBoat(Boat b) {
+    boats.remove(b);
+    if (boats.contains(b)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

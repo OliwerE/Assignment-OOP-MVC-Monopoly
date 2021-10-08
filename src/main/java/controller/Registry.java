@@ -153,8 +153,27 @@ public class Registry {
               memberMenuInput(m);
             } else if (boatAlt == 2) {
               // Change length
+              console.print("Enter new length: ");
+              Integer newType = console.getInteger();
+              Boolean isChanged = m.changeBoatLength(boat, newType);
+              if (isChanged) {
+                console.printLine("Boat type has been changed!");
+              } else {
+                console.printLine("Boat type has not been changed.");
+              }
+              memberMenuInput(m);
             } else if (boatAlt == 3) {
               // remove boat
+              console.print("Select boat to remove (1-" + m.getBoats().size() + "): ");
+              Integer boatIndexToRemove = console.getInteger() - 1;
+              m.getBoats().get(boatIndexToRemove);
+              Boolean isRemoved = m.removeBoat(m.getBoats().get(boatIndexToRemove));
+              if (isRemoved) {
+                console.printLine("Boat type has been removed!");
+              } else {
+                console.printLine("Boat has not been removed.");
+              }
+              memberMenuInput(m);
             } else {
               // ERROR!
             }

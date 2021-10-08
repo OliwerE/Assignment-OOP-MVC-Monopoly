@@ -15,10 +15,10 @@ public class Console {
   }
 
   public void displayMainMenu() {
-    System.out.println("Verbose member list (1), compact member list (2), exit (3): ");
+    System.out.print("Verbose member list (1), compact member list (2), exit (3): ");
   }
 
-  public int getMenuInput() {
+  public int getIntInput() {
     try {
       return scanner.nextInt();
     } catch (InputMismatchException e) {
@@ -51,12 +51,10 @@ public class Console {
 
   private void printMemberList(ArrayList<Member> members, Boolean isVerbose) {
     for (int i = 0; i < members.size(); i++) {
-      System.out.println("--------");
       if (isVerbose) {
-        System.out.println("Name: " + members.get(i).getName() + "\npersonal number: " + members.get(i).getPersonalNumber() + "\nid: " + members.get(i).getId());
-        printBoats(members.get(i).getBoats());
+        displayMember(members.get(i));
       } else {
-        System.out.println("Name: " + members.get(i).getName() + "\nid: " + members.get(i).getId() + "\nnumber of boats: " + members.get(i).getBoats().size());
+        System.out.println("--------\nName: " + members.get(i).getName() + "\nid: " + members.get(i).getId() + "\nnumber of boats: " + members.get(i).getBoats().size());
       }
     }
   }
@@ -91,17 +89,23 @@ public class Console {
   }
 
   public void displayMemberListMenu() {
-    System.out.println("Show member (1), create member (2), delete member (3), main Menu (4): ");
+    System.out.print("Show member (1), create member (2), delete member (3), main Menu (4): ");
   }
 
-
-  /*
-  public void print(String s) {
-    System.out.print(s);
+  public void displayMember(Member m) {
+    System.out.println("--------\nName: " + m.getName() + "\nPersonal number: " + m.getPersonalNumber() + "\nId: " + m.getId());
+    printBoats(m.getBoats());
   }
 
-  /*
-  public String getString() {
+  public void displayMemberMenu() {
+    System.out.print("Register boat (1), change boat type (2), change boat lenght (3), Change name (4), change personal number (5), back (6): ");
+  }
+
+  public void displayEnterName() {
+    System.out.print("Enter name: ");
+  }
+
+  public String getStringInput() {
     try {
       return scanner.next();
     } catch (InputMismatchException e) {
@@ -110,18 +114,27 @@ public class Console {
     }
   }
 
-  public void printMember(Member m) {
-    System.out.println("--------");
-    System.out.println("Name: " + m.getName() + "\nPersonal number: " + m.getPersonalNumber() + "\nId: " + m.getId());
-    
-    System.out.println("Boats:");
-    for (int j = 0; j < m.getBoats().size(); j++) { // kopierad till printMember!! skapa metod
-      ArrayList<Boat> boats = m.getBoats();
-      System.out.println("----\nBoat " + Integer.toString(j + 1) + ": \nType: " + boats.get(j).getBoatType() + "\nLength: "
-          + boats.get(j).getBoatLength() + "\n----");
-    }
-    
-    System.out.println("--------");
+  public void displayEnterPersonalNumber() {
+    System.out.print("Enter personal number: ");
   }
-  */
+
+  public void displayRegisterMemberSuccess() {
+    System.out.print("Member has been registered!");
+  }
+
+  public void displayRegisterMemberError() {
+    System.out.print("Member has not been registered.");
+  }
+
+  public void deleteMemberMessage() {
+    System.out.print("Enter member id: ");
+  }
+
+  public void deleteMemberSuccess() {
+    System.out.print("Member has been removed!");
+  }
+
+  public void deleteMemberError() {
+    System.out.print("Member has not been removed.");
+  }
 }

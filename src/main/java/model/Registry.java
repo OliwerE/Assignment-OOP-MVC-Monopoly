@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Registry {
   private ArrayList<Member> members = new ArrayList<>();
-  private Integer nextMemberId = 1;
+  private int nextMemberId = 1;
 
   public Registry() {
     // constructor
   }
 
-  public Boolean createMember(String name, Integer personalNumber) { // TODO: Add personal number!!!
+  public Boolean createMember(String name, int personalNumber) { // TODO: Add personal number!!!
     if (name.length() > 0) {
       Member m = new Member();
       m.setId(nextMemberId);
@@ -28,7 +28,7 @@ public class Registry {
     return new ArrayList<Member>(members); // Iterator istället??
   }
 
-  public boolean deleteMember(Integer memberId) {
+  public boolean deleteMember(int memberId) {
     Boolean removed = false;
     for (Member m : members) {
       if (memberId == m.getId()) {
@@ -45,7 +45,7 @@ public class Registry {
     }
   }
 
-  public Member getMemberById(Integer memberId) {
+  public Member getMemberById(int memberId) {
     return members.get(memberId - 1);
   }
 

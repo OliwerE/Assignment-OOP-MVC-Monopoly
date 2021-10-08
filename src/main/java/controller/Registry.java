@@ -13,12 +13,12 @@ public class Registry {
     m_registry.createMember("Medlem2", 234567);
     m_registry.createMember("medlem3", 345678);
 
-    ArrayList<Member> m = m_registry.getMembers();
+    ArrayList<Member> r = m_registry.getMembers();
 
-    m.get(0).registerBoat(1, 200);
-    m.get(0).registerBoat(3, 100);
+    r.get(0).registerBoat(1, 200);
+    r.get(0).registerBoat(3, 100);
 
-    m.get(2).registerBoat(2, 150);
+    r.get(2).registerBoat(2, 150);
 
   }
 
@@ -30,7 +30,7 @@ public class Registry {
 
   private void mainMenu() {
     v_console.displayMainMenu();
-    int input = v_console.getMenuInput();
+    int input = v_console.getIntInput();
 
     if (input == 1) {
       verboseMemberList();
@@ -46,12 +46,12 @@ public class Registry {
 
   private void verboseMemberList() {
     v_console.displayVerboseMemberList(m_registry.getMembers());
-    memberListMenu();
+    memberListMenu(true);
   }
 
   private void compactMemberList() {
     v_console.displayCompactMemberList(m_registry.getMembers());
-    memberListMenu();
+    memberListMenu(false);
   }
 
   private void closeApplication() {
@@ -63,19 +63,75 @@ public class Registry {
     System.exit(0);
   }
 
-  private void memberListMenu() {
+  private void memberListMenu(Boolean isVerbose) {
     v_console.displayMemberListMenu();
-    int input = v_console.getMenuInput();
+    int input = v_console.getIntInput();
 
     if (input == 1) {
-      
+      showMember();
     } else if (input == 2) {
-      
+      createMember();
     } else if (input == 3) {
-      
+      deleteMember();
+    } else if (input == 4) {
+      mainMenu();
     } else {
       v_console.displayMenuInputError(input);
-      memberListMenu();
+    }
+
+    if (isVerbose) {
+      verboseMemberList();
+    } else {
+      compactMemberList();
+    }
+  }
+
+  private void showMember() {
+    v_console.displayMember(m_registry.getMemberById(v_console.getIntInput()));
+    memberMenu();
+  }
+
+  private void memberMenu() {
+    v_console.displayMemberMenu();
+    int input = v_console.getIntInput();
+
+    if (input == 1) {
+      // register boat
+    } else if (input == 2) {
+      // change boat type
+    } else if (input == 3) {
+      // change boat length
+    } else if (input == 4) {
+      // change name
+    } else if (input == 5) {
+      // change personal number
+    } else if (input == 6) {
+      // back
+    } else {
+      v_console.displayMenuInputError(input);
+    }
+  }
+
+  private void createMember() {
+    v_console.displayEnterName();
+    String name = v_console.getStringInput();
+    v_console.displayEnterPersonalNumber();
+    int personalNumber = v_console.getIntInput();
+    Boolean isRegistered = m_registry.createMember(name, personalNumber);
+    if (isRegistered) {
+      v_console.displayRegisterMemberSuccess();
+    } else {
+      v_console.displayRegisterMemberError();
+    }
+  }
+
+  private void deleteMember() {
+    v_console.deleteMemberMessage();
+    Boolean isRemoved = m_registry.deleteMember(v_console.getIntInput());
+    if (isRemoved) {
+      v_console.deleteMemberSuccess();
+    } else {
+      v_console.deleteMemberError();
     }
   }
 

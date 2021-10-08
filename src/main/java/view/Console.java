@@ -137,4 +137,22 @@ public class Console {
   public void deleteMemberError() {
     System.out.print("Member has not been removed.");
   }
+
+  public int getBoatType() {
+    System.out.print("Enter boat type (1 = Sailboat, 2 = Motorsailer, 3 = Kayak/Canoe, 4 = Other): ");
+    return getIntInput();
+  }
+
+  public int getBoatLength() {
+    System.out.print("Enter boat length: ");
+    return getIntInput();
+  }
+
+  public void displayBoatRegisteredSuccess() {
+    System.out.print("Boat has been registered!");
+  }
+
+  public void displayBoatRegisteredError() {
+    System.out.print("Boat has not been registered.");
+  }
 }

@@ -90,17 +90,18 @@ public class Registry {
     }
   }
 
-  private void showMember(Boolean isVerbose) {
-    v_console.displayMember(m_registry.getMemberById(v_console.getIntInput()));
-    memberMenu(isVerbose);
+  private void showMember(Boolean isVerbose) { // remove input from showMember!
+    Member member = m_registry.getMemberById(v_console.getIntInput());
+    v_console.displayMember(member);
+    memberMenu(member, isVerbose);
   }
 
-  private void memberMenu(Boolean isVerbose) {
+  private void memberMenu(Member member, Boolean isVerbose) {
     v_console.displayMemberMenu();
     int input = v_console.getIntInput();
 
     if (input == 1) {
-      // register boat
+      registerBoat(member);
     } else if (input == 2) {
       // change boat type
     } else if (input == 3) {
@@ -115,6 +116,34 @@ public class Registry {
     } else {
       v_console.displayMenuInputError(input);
     }
+    
+    v_console.displayMember(member); // remove input from showMember!
+    memberMenu(member, isVerbose);
+  }
+
+  private void registerBoat(Member member) {
+    Boolean isRegistered = member.registerBoat(v_console.getBoatType(), v_console.getBoatLength());
+    if (isRegistered) {
+      v_console.displayBoatRegisteredSuccess();
+    } else {
+      v_console.displayBoatRegisteredError();
+    }
+  }
+
+  private void changeBoatType() {
+
+  }
+
+  private void changeBoatLength() {
+
+  }
+
+  private void changeName() {
+
+  }
+
+  private void changePersonalNumber() {
+
   }
 
   private void createMember() {

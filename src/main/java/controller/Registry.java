@@ -5,22 +5,16 @@ import model.Boat;
 import java.util.ArrayList;
 
 public class Registry {
-  private model.Registry registry = new model.Registry();
-  private view.Console console = new view.Console();
-
-  public void start() {
-      devMembers();
-      console.printLine("---------- Member Registry ----------");
-      mainMenuInput();
-  }
+  private model.Registry m_registry = new model.Registry();
+  private view.Console v_console = new view.Console();
 
   private void devMembers() { // testing.. remove!
-    registry.createMember("medlem1", 123456);
-    registry.createMember("Medlem2", 234567);
-    registry.createMember("medlem3", 345678);
-    
-    ArrayList<Member> m = registry.getMembers();
-    
+    m_registry.createMember("medlem1", 123456);
+    m_registry.createMember("Medlem2", 234567);
+    m_registry.createMember("medlem3", 345678);
+
+    ArrayList<Member> m = m_registry.getMembers();
+
     m.get(0).registerBoat(1, 200);
     m.get(0).registerBoat(3, 100);
 
@@ -28,11 +22,44 @@ public class Registry {
 
   }
 
-  private void mainMenuInput() {
-    console.print("Verbose member list (1), compact member list (2), exit (3): ");
-    Integer i = console.getInteger();
-    handleMainMenuInput(i); 
+  public void start() {
+      devMembers(); // REMOVE!
+      v_console.displayTitle();
+      mainMenu();
   }
+
+  private void mainMenu() {
+    v_console.displayMainMenu();
+    int input = v_console.getMenuInput();
+
+    if (input == 1) {
+      verboseMemberList();
+    } else if (input == 2) {
+      compactMemberList();
+    } else if (input == 3) {
+      closeApplication();
+    }
+  }
+
+  public void verboseMemberList() {
+    v_console.displayVerboseMemberList(m_registry.getMembers());
+  }
+
+  public void compactMemberList() {
+    v_console.displayCompactMemberList(m_registry.getMembers());
+  }
+
+  private void closeApplication() {
+    v_console.displayCloseMessage();
+    v_console.closeScanner();
+
+    // FIX: Save to "file"
+
+    System.exit(0);
+  }
+
+  /*
+
 
   private void handleMainMenuInput(Integer input) {
     if (input == 1) {
@@ -203,5 +230,6 @@ public class Registry {
     boolean isRemoved = registry.deleteMember(memberId);
     return isRemoved;
   }
+  */
 
 }

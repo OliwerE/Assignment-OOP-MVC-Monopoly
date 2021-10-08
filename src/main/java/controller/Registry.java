@@ -1,6 +1,8 @@
 package controller;
 
 import model.Member;
+import model.Boat;
+import java.util.ArrayList;
 
 public class Registry {
   private model.Registry registry = new model.Registry();
@@ -16,6 +18,14 @@ public class Registry {
     registry.createMember("medlem1", 123456);
     registry.createMember("Medlem2", 234567);
     registry.createMember("medlem3", 345678);
+    
+    ArrayList<Member> m = registry.getMembers();
+    
+    m.get(0).registerBoat(1, 200);
+    m.get(0).registerBoat(3, 100);
+
+    m.get(2).registerBoat(2, 150);
+
   }
 
   private void mainMenuInput() {
@@ -94,7 +104,7 @@ public class Registry {
 
   private void handleMemberMenuInput(Integer input, Member m) {
     if (input == 1) {
-      console.print("Enter type (sailboat = 1, motorsailer = 2, kayak/canoe = 3, other = 4): ");
+      console.print("Enter type (sailboat = 1, motorsailer = 2, kayak/canoe = 3, other = 4): "); // dup. längre ner!
       Integer boatType = console.getInteger();
       console.print("Enter length: ");
       Integer boatLength = console.getInteger();
@@ -111,19 +121,47 @@ public class Registry {
 
       if (alt == 1) {
         // Change name
-        System.out.print("Enter new name: ");
+        console.print("Enter new name: ");
         m.setName(console.getString());
         memberMenuInput(m);
       } else if (alt == 2) {
         // change personal number
-        System.out.print("Enter new personal number: ");
+        console.print("Enter new personal number: ");
         m.setPersonalNumber(console.getInteger());
         memberMenuInput(m);
       } else if (alt == 3) {
         // change boat info
         if (m.getBoats().size() > 0) {
-          System.out.print("Select boat (1-" + Integer.toString(m.getBoats().size() + 1) + "): ");
-          m.setPersonalNumber(console.getInteger());
+          console.print("Select boat (1-" + Integer.toString(m.getBoats().size()) + "): ");
+          Integer n = console.getInteger();
+
+          if (n > 0 && n <= m.getBoats().size()) {
+            Boat boat = m.getBoats().get(n - 1);
+            console.print("Change boat type (1), change length (2), remove boat (3): ");
+            Integer boatAlt = console.getInteger();
+
+            if (boatAlt == 1) {
+              // Change type
+              console.print("Enter type (sailboat = 1, motorsailer = 2, kayak/canoe = 3, other = 4): "); // dupl. längre upp!
+              Integer newType = console.getInteger();
+              Boolean isChanged = m.changeBoatType(boat, newType);
+              if (isChanged) {
+                console.printLine("Boat type has been changed!");
+              } else {
+                console.printLine("Boat type has not been changed.");
+              }
+              memberMenuInput(m);
+            } else if (boatAlt == 2) {
+              // Change length
+            } else if (boatAlt == 3) {
+              // remove boat
+            } else {
+              // ERROR!
+            }
+          } else {
+            console.printLine("Boat " + Integer.toString(n) + " does not exitst.");
+          }
+          
         } else {
           System.out.println("Member does not have registered boats!");
           memberMenuInput(m);

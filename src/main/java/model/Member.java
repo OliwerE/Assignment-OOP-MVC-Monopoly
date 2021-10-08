@@ -57,4 +57,19 @@ public class Member {
     boats.add(newBoat);
     return true;
   }
+
+  public Boolean changeBoatType(Boat b, Integer newType) {
+    if (newType == 1) {
+      b.setBoatType("Sailboat");
+    } else if (newType == 2) {
+      b.setBoatType("Motorsailer");
+    } else if (newType == 3) {
+      b.setBoatType("Kayak/Canoe");
+    } else if (newType == 4) {
+      b.setBoatType("Other");
+    } else {
+      return false;
+    }
+    return true;
+  }
 }

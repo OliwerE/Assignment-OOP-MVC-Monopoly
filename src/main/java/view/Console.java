@@ -3,6 +3,8 @@ package view;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import model.Boat;
 import model.Member;
 
 public class Console {
@@ -39,8 +41,14 @@ public class Console {
     if (members.size() > 0) {
       for (int i = 0; i < members.size(); i++) {
         System.out.println("--------");
-        System.out.println(
-            "Name: " + members.get(i).getName() + "\npersonal number: " + members.get(i).getPersonalNumber() + "\nid: " + members.get(i).getId() + "\nboat information: FIX!");
+        System.out.println("Name: " + members.get(i).getName() + "\npersonal number: " + members.get(i).getPersonalNumber() + "\nid: " + members.get(i).getId());
+
+        System.out.println("Boats:");
+        for (int j = 0; j < members.get(i).getBoats().size(); j++) { // kopierad till printMember!! skapa metod
+          ArrayList<Boat> boats = members.get(i).getBoats();
+          System.out.println("----\nBoat " + Integer.toString(j + 1) + ": \nType: " + boats.get(j).getBoatType() + "\nLength: " + boats.get(j).getBoatLength() + "\n----");
+        }
+
       }
     } else {
       System.out.println("Registry is empty.");
@@ -52,7 +60,7 @@ public class Console {
     if (members.size() > 0) {
       for (int i = 0; i < members.size(); i++) {
         System.out.println("--------");
-        System.out.println("Name: " + members.get(i).getName() + "\nid: " + members.get(i).getId() + "\nnumber of boats: " + 0);
+        System.out.println("Name: " + members.get(i).getName() + "\nid: " + members.get(i).getId() + "\nnumber of boats: " + members.get(i).getBoats().size());
       }
       System.out.println("--------");
     } else {
@@ -62,7 +70,15 @@ public class Console {
 
   public void printMember(Member m) {
     System.out.println("--------");
-    System.out.println("Name: " + m.getName() + "\nPersonal number: " + m.getPersonalNumber() + "\nId: " + m.getId() + "\nBoats: ...");
+    System.out.println("Name: " + m.getName() + "\nPersonal number: " + m.getPersonalNumber() + "\nId: " + m.getId());
+    
+    System.out.println("Boats:");
+    for (int j = 0; j < m.getBoats().size(); j++) { // kopierad till printMember!! skapa metod
+      ArrayList<Boat> boats = m.getBoats();
+      System.out.println("----\nBoat " + Integer.toString(j + 1) + ": \nType: " + boats.get(j).getBoatType() + "\nLength: "
+          + boats.get(j).getBoatLength() + "\n----");
+    }
+    
     System.out.println("--------");
   }
 

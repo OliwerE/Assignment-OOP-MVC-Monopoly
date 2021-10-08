@@ -87,18 +87,28 @@ public class Registry {
   }
 
   private void memberMenuInput(Member m) {
-    console.print("Register boat (1), Change info (2), back (3): ");
+    console.print("Register boat (1), Change info (2), main menu (3): ");
     Integer i = console.getInteger();
     handleMemberMenuInput(i, m);
   }
 
   private void handleMemberMenuInput(Integer input, Member m) {
     if (input == 1) {
-      // register boat
+      console.print("Enter type (sailboat = 1, motorsailer = 2, kayak/canoe = 3, other = 4): ");
+      Integer boatType = console.getInteger();
+      console.print("Enter length: ");
+      Integer boatLength = console.getInteger();
+      Boolean isRegistered = m.registerBoat(boatType, boatLength);
+      if (isRegistered) {
+        console.printLine("Boat registered!");
+      } else {
+        console.printLine("Boat has not been registered");
+      }
+      memberMenuInput(m);
     } else if (input == 2) {
       // change info
     } else if (input == 3) {
-      // BACK
+      mainMenuInput();
     } else {
       // ERROR
     }

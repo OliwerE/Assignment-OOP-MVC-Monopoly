@@ -8,7 +8,7 @@ public class Boat {
     return boatType;
   }
 
-  public void setBoatType(String boatType) {
+  protected void setBoatType(String boatType) {
     this.boatType = boatType;
   }
 
@@ -16,7 +16,7 @@ public class Boat {
     return boatLength;
   }
 
-  public void setBoatLength(Integer boatLength) {
+  protected void setBoatLength(Integer boatLength) {
     this.boatLength = boatLength;
   }
 }

@@ -12,7 +12,7 @@ public class Member {
     return id;
   }
 
-  public void setId(Integer id) {
+  protected void setId(Integer id) {
     this.id = id;
   }
 
@@ -20,11 +20,11 @@ public class Member {
     return name;
   }
 
-  public void setName(String name) {
+  protected void setName(String name) {
     this.name = name;
   }
 
-  public void setPersonalNumber(Integer personalNumber) {
+  protected void setPersonalNumber(Integer personalNumber) {
     this.personalNumber = personalNumber;
   }
 
@@ -32,7 +32,7 @@ public class Member {
     return personalNumber;
   }
 
-  public void setBoat(Boat b) {
+  protected void setBoat(Boat b) {
     boats.add(b);
   }
 

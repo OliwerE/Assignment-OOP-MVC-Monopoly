@@ -38,15 +38,20 @@ public class Registry {
       compactMemberList();
     } else if (input == 3) {
       closeApplication();
+    } else {
+      v_console.displayMenuInputError(input);
+      mainMenu();
     }
   }
 
-  public void verboseMemberList() {
+  private void verboseMemberList() {
     v_console.displayVerboseMemberList(m_registry.getMembers());
+    memberListMenu();
   }
 
-  public void compactMemberList() {
+  private void compactMemberList() {
     v_console.displayCompactMemberList(m_registry.getMembers());
+    memberListMenu();
   }
 
   private void closeApplication() {
@@ -56,6 +61,22 @@ public class Registry {
     // FIX: Save to "file"
 
     System.exit(0);
+  }
+
+  private void memberListMenu() {
+    v_console.displayMemberListMenu();
+    int input = v_console.getMenuInput();
+
+    if (input == 1) {
+      
+    } else if (input == 2) {
+      
+    } else if (input == 3) {
+      
+    } else {
+      v_console.displayMenuInputError(input);
+      memberListMenu();
+    }
   }
 
   /*

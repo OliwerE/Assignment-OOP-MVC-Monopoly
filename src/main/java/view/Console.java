@@ -86,23 +86,19 @@ public class Console {
     scanner.close();
   }
 
+  public void displayMenuInputError(int input) {
+    System.out.println(input + " is not an alternative!");
+  }
+
+  public void displayMemberListMenu() {
+    System.out.println("Show member (1), create member (2), delete member (3), main Menu (4): ");
+  }
+
 
   /*
   public void print(String s) {
     System.out.print(s);
   }
-  /
-
-  /*
-  public Integer getInteger() {
-    try {
-      return scanner.nextInt();
-    } catch (InputMismatchException e) {
-      System.out.println(e);
-      return -1;
-    }
-  }
-  */
 
   /*
   public String getString() {
@@ -111,38 +107,6 @@ public class Console {
     } catch (InputMismatchException e) {
       System.out.println(e);
       return "";
-    }
-  }
-
-  public void printVerboseMemberList(ArrayList<Member> members) {
-    System.out.println("Verbose member list:");
-    if (members.size() > 0) {
-      for (int i = 0; i < members.size(); i++) {
-        System.out.println("--------");
-        System.out.println("Name: " + members.get(i).getName() + "\npersonal number: " + members.get(i).getPersonalNumber() + "\nid: " + members.get(i).getId());
-
-        System.out.println("Boats:");
-        for (int j = 0; j < members.get(i).getBoats().size(); j++) { // kopierad till printMember!! skapa metod
-          ArrayList<Boat> boats = members.get(i).getBoats();
-          System.out.println("----\nBoat " + Integer.toString(j + 1) + ": \nType: " + boats.get(j).getBoatType() + "\nLength: " + boats.get(j).getBoatLength() + "\n----");
-        }
-
-      }
-    } else {
-      System.out.println("Registry is empty.");
-    }
-  }
-
-  public void printCompactMemberList(ArrayList<Member> members) {
-    System.out.println("Compact member list:");
-    if (members.size() > 0) {
-      for (int i = 0; i < members.size(); i++) {
-        System.out.println("--------");
-        System.out.println("Name: " + members.get(i).getName() + "\nid: " + members.get(i).getId() + "\nnumber of boats: " + members.get(i).getBoats().size());
-      }
-      System.out.println("--------");
-    } else {
-      System.out.println("Registry is empty.");
     }
   }
 

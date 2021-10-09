@@ -138,9 +138,9 @@ public class Registry {
 
   private void boatChangeMessage(Boolean isChanged) {
     if (isChanged) {
-      v_console.displayBoatUpdateSuccess();
+      v_console.displayBoatUpdateMessage(true);
     } else {
-      v_console.displayBoatUpdateError();
+      v_console.displayBoatUpdateMessage(false);
     }
   }
 
@@ -150,11 +150,11 @@ public class Registry {
   }
 
   private void changeName(Member member) {
-    member.setName(v_console.getMemberName());
+    member.setName(v_console.getMemberName()); // add status msg
   }
 
   private void changePersonalNumber(Member member) {
-    member.setPersonalNumber(v_console.getPersonalNumber());
+    member.setPersonalNumber(v_console.getPersonalNumber()); // add status msg
   }
 
   private void createMember() {

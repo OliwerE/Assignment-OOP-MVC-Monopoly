@@ -163,11 +163,11 @@ public class Console {
     System.out.print("Boat has not been registered.");
   }
 
-  public void displayBoatUpdateSuccess() {
-    System.out.print("Boat has been updated!");
-  }
-
-  public void displayBoatUpdateError() {
-    System.out.print("Boat has not been updated.");
+  public void displayBoatUpdateMessage(Boolean isSuccess) {
+    if (isSuccess) {
+      System.out.print("Boat has been updated!");
+    } else {
+      System.out.print("Boat has not been updated.");
+    }
   }
 }

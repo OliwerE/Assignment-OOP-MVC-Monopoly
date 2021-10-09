@@ -125,24 +125,24 @@ public class Console {
     return getIntInput();
   }
 
-  public void displayRegisterMemberSuccess() {
-    System.out.print("Member has been registered!");
-  }
-
-  public void displayRegisterMemberError() {
-    System.out.print("Member has not been registered.");
+  public void displayRegisterMemberStatus(Boolean isSuccess) {
+    if (isSuccess) {
+      System.out.print("Member has been registered!");
+    } else {
+      System.out.print("Member has not been registered.");
+    }
   }
 
   public void deleteMemberMessage() {
     System.out.print("Enter member id: ");
   }
 
-  public void deleteMemberSuccess() {
-    System.out.print("Member has been removed!");
-  }
-
-  public void deleteMemberError() {
-    System.out.print("Member has not been removed.");
+  public void displayDeleteMemberStatus(Boolean isSuccess) {
+    if (isSuccess) {
+      System.out.print("Member has been removed!");
+    } else {
+      System.out.print("Member has not been removed.");
+    }
   }
 
   public int getBoatType() {
@@ -155,19 +155,19 @@ public class Console {
     return getIntInput();
   }
 
-  public void displayBoatRegisteredSuccess() {
-    System.out.print("Boat has been registered!");
-  }
-
-  public void displayBoatRegisteredError() {
-    System.out.print("Boat has not been registered.");
+  public void displayBoatRegisteredStatus(Boolean isSuccess) {
+    if (isSuccess) {
+      System.out.print("Boat has been registered!");
+    } else {
+      System.out.print("Boat has not been registered.");
+    }
   }
 
   public void displayBoatUpdateMessage(Boolean isSuccess) {
     if (isSuccess) {
-      System.out.print("Boat has been updated!");
+      System.out.println("Boat has been updated!");
     } else {
-      System.out.print("Boat has not been updated.");
+      System.out.println("Boat has not been updated.");
     }
   }
 }

@@ -124,11 +124,7 @@ public class Registry {
 
   private void registerBoat(Member member) {
     Boolean isRegistered = member.registerBoat(v_console.getBoatType(), v_console.getBoatLength());
-    if (isRegistered) {
-      v_console.displayBoatRegisteredSuccess();
-    } else {
-      v_console.displayBoatRegisteredError();
-    }
+    v_console.displayBoatRegisteredStatus(isRegistered);
   }
 
   private void changeBoatType(Member member) {
@@ -137,11 +133,7 @@ public class Registry {
   }
 
   private void boatChangeMessage(Boolean isChanged) {
-    if (isChanged) {
-      v_console.displayBoatUpdateMessage(true);
-    } else {
-      v_console.displayBoatUpdateMessage(false);
-    }
+      v_console.displayBoatUpdateMessage(isChanged);
   }
 
   private void changeBoatLength(Member member) {
@@ -159,20 +151,12 @@ public class Registry {
 
   private void createMember() {
     Boolean isRegistered = m_registry.createMember(v_console.getMemberName(), v_console.getPersonalNumber());
-    if (isRegistered) {
-      v_console.displayRegisterMemberSuccess();
-    } else {
-      v_console.displayRegisterMemberError();
-    }
+    v_console.displayRegisterMemberStatus(isRegistered);
   }
 
   private void deleteMember() {
     v_console.deleteMemberMessage();
     Boolean isRemoved = m_registry.deleteMember(v_console.getIntInput());
-    if (isRemoved) {
-      v_console.deleteMemberSuccess();
-    } else {
-      v_console.deleteMemberError();
-    }
+    v_console.displayDeleteMemberStatus(isRemoved);
   }
 }

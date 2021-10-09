@@ -5,10 +5,26 @@ import java.util.ArrayList;
 public class RegistryStorage implements RegistryPersistence {
   public ArrayList<Member> loadMemberRegistry() {
 
-    return new ArrayList<Member>(); // add hardcoded loading
+    ArrayList<Member> registry = new ArrayList<Member>();
+
+    // Add members
+    int[] personalNumbers = {123456, 234567, 345678};
+    for(int i = 0; i < 3; i++) {
+      Member m = new Member();
+      m.setName("Medlem" + Integer.toString(i + 1));
+      m.setPersonalNumber(personalNumbers[i]);
+    }
+
+    // Add boats to members
+    registry.get(0).registerBoat(1, 200);
+    registry.get(0).registerBoat(3, 100);
+    registry.get(2).registerBoat(2, 150);
+
+
+    return registry; // add hardcoded loading
   }
 
-  public void saveMemberRegistry(ArrayList<Member> r) {
-
+  public Boolean saveMemberRegistry(ArrayList<Member> r) {
+    return true; // = Success
   }
 }

@@ -1,28 +1,12 @@
 package controller;
 
 import model.Member;
-import java.util.ArrayList;
 
 public class Registry {
   private model.Registry m_registry = new model.Registry();
   private view.Console v_console = new view.Console();
 
-  private void devMembers() { // testing.. remove!
-    m_registry.createMember("medlem1", 123456);
-    m_registry.createMember("Medlem2", 234567);
-    m_registry.createMember("medlem3", 345678);
-
-    ArrayList<Member> r = m_registry.getMembers();
-
-    r.get(0).registerBoat(1, 200);
-    r.get(0).registerBoat(3, 100);
-
-    r.get(2).registerBoat(2, 150);
-
-  }
-
   public void start() {
-      devMembers(); // REMOVE!
       v_console.displayTitle();
       mainMenu();
   }

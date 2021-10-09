@@ -3,11 +3,12 @@ package model;
 import java.util.ArrayList;
 
 public class Registry {
-  private ArrayList<Member> members = new ArrayList<>();
+  private RegistryStorage storage = new RegistryStorage();
+  private ArrayList<Member> members;
   private int nextMemberId = 1;
 
   public Registry() {
-    // constructor
+    members = storage.loadMemberRegistry();
   }
 
   public Boolean createMember(String name, int personalNumber) { // TODO: Add personal number!!!

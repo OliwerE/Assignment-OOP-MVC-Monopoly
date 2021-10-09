@@ -78,7 +78,9 @@ public class Member {
     return true;
   }
 
-  public Boolean changeBoatLength(Boat b, Integer newLength) { // flytta till Boat?
+  public Boolean changeBoatLength(int boatId, Integer newLength) { // flytta till Boat?
+    Boat b = boats.get(boatId - 1);
+    
     if (newLength > 0) {
       b.setBoatLength(newLength);
       return true;

@@ -62,7 +62,7 @@ public class Console {
   private void printBoats(ArrayList<Boat> boats) {
     System.out.println("Boats:");
     for (int j = 0; j < boats.size(); j++) {
-      System.out.println("----\nBoat " + Integer.toString(j + 1) + ": \nType: " + boats.get(j).getBoatType() + "\nLength: " + boats.get(j).getBoatLength() + "\n----");
+      System.out.println("----\nBoat id: " + boats.get(j).getBoatId() + "\nType: " + boats.get(j).getBoatType() + "\nLength: " + boats.get(j).getBoatLength());
     }
   }
 

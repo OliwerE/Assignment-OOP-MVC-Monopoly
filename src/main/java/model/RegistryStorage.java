@@ -13,6 +13,7 @@ public class RegistryStorage implements RegistryPersistence {
       Member m = new Member();
       m.setName("Medlem" + Integer.toString(i + 1));
       m.setPersonalNumber(personalNumbers[i]);
+      m.setId(i + 1);
       registry.add(m);
     }
 

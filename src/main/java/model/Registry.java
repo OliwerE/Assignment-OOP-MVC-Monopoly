@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Registry {
   private RegistryStorage storage = new RegistryStorage();
   private ArrayList<Member> members;
-  private int nextMemberId = 1;
 
   public Registry() {
     members = storage.loadMemberRegistry();
@@ -14,8 +13,7 @@ public class Registry {
   public Boolean createMember(String name, int personalNumber) { // TODO: Add personal number!!!
     if (name.length() > 0) {
       Member m = new Member();
-      m.setId(nextMemberId);
-      nextMemberId += 1;
+      m.setId(getNextId());
       m.setName(name);
       m.setPersonalNumber(personalNumber);
       members.add(m);
@@ -23,6 +21,10 @@ public class Registry {
     } else {
       return false;
     }
+  }
+
+  private int getNextId() {
+    return members.get(members.size() - 1).getId() + 1;
   }
 
   public ArrayList<Member> getMembers() {

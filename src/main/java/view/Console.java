@@ -101,6 +101,11 @@ public class Console {
     System.out.print("Register boat (1), change boat type (2), change boat lenght (3), Change name (4), change personal number (5), back (6): ");
   }
 
+  public int getBoatId() {
+    System.out.print("Enter boat id: ");
+    return getIntInput();
+  }
+
   public String getMemberName() {
     System.out.print("Enter name: ");
     return getStringInput();
@@ -156,5 +161,13 @@ public class Console {
 
   public void displayBoatRegisteredError() {
     System.out.print("Boat has not been registered.");
+  }
+
+  public void displayBoatUpdateSuccess() {
+    System.out.print("Boat has been updated!");
+  }
+
+  public void displayBoatUpdateError() {
+    System.out.print("Boat has not been updated.");
   }
 }

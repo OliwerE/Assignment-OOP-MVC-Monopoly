@@ -104,6 +104,7 @@ public class Registry {
       registerBoat(member);
     } else if (input == 2) {
       // change boat type
+      changeBoatType(member);
     } else if (input == 3) {
       // change boat length
     } else if (input == 4) {
@@ -130,8 +131,13 @@ public class Registry {
     }
   }
 
-  private void changeBoatType() {
-
+  private void changeBoatType(Member member) {
+    Boolean isChanged = member.changeBoatType(v_console.getBoatId(), v_console.getBoatType());
+    if (isChanged) {
+      v_console.displayBoatUpdateSuccess();
+    } else {
+      v_console.displayBoatUpdateError();
+    }
   }
 
   private void changeBoatLength() {

@@ -7,6 +7,7 @@ public class Member {
   private String name;
   private Integer personalNumber;
   private ArrayList<Boat> boats = new ArrayList<>();
+  private int nextBoatId = 1;
 
   public Integer getId() {
     return id;
@@ -54,11 +55,15 @@ public class Member {
       return false;
     }
     newBoat.setBoatLength(length);
+    newBoat.setBoatId(nextBoatId);
+    nextBoatId += 1;
     boats.add(newBoat);
     return true;
   }
 
-  public Boolean changeBoatType(Boat b, Integer newType) { // flytta till Boat?
+  public Boolean changeBoatType(int boatId, Integer newType) { // flytta till Boat?
+    Boat b = boats.get(boatId - 1);
+
     if (newType == 1) {
       b.setBoatType("Sailboat");
     } else if (newType == 2) {

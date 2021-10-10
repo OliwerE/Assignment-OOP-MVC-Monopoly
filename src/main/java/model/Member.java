@@ -24,23 +24,25 @@ public class Member {
     this.name = name;
   }
 
-  public void setPersonalNumber(int personalNumber) {
-    this.personalNumber = personalNumber;
-  }
-
   public int getPersonalNumber() {
     return personalNumber;
   }
 
-  protected void setBoat(Boat b) {
+  public void setPersonalNumber(int personalNumber) {
+    this.personalNumber = personalNumber;
+  }
+
+  /* används ej?
+  protected void addBoat(Boat b) {
     boats.add(b);
   }
+  */
 
   public ArrayList<Boat> getBoats() {
     return new ArrayList<Boat>(boats);
   }
 
-  public Boolean registerBoat(Integer type, Integer length) {
+  public Boolean registerBoat(int type, int length) {
     Boat newBoat = new Boat();
     if (type == 1) {
       newBoat.setBoatType("Sailboat");

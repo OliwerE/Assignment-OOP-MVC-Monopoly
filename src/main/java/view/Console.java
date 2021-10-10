@@ -8,7 +8,7 @@ import model.Boat;
 import model.Member;
 
 public class Console {
-  Scanner scanner = new Scanner(System.in);
+  private Scanner scanner = new Scanner(System.in);
 
   public void displayTitle() {
     System.out.println("---------- Member Registry ----------");

@@ -2,7 +2,7 @@ package model;
 
 public class Boat {
   private String boatType;
-  private Integer boatLength;
+  private int boatLength;
   private int boatId;
 
   public String getBoatType() {
@@ -13,11 +13,11 @@ public class Boat {
     this.boatType = boatType;
   }
 
-  public Integer getBoatLength() {
+  public int getBoatLength() {
     return boatLength;
   }
 
-  protected void setBoatLength(Integer boatLength) {
+  protected void setBoatLength(int boatLength) {
     this.boatLength = boatLength;
   }
 

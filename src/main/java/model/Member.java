@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class Member {
   private Integer id;
   private String name;
-  private Integer personalNumber;
+  private int personalNumber;
   private ArrayList<Boat> boats = new ArrayList<>();
-  private int nextBoatId = 1;
 
   public Integer getId() {
     return id;
@@ -25,11 +24,11 @@ public class Member {
     this.name = name;
   }
 
-  public void setPersonalNumber(Integer personalNumber) {
+  public void setPersonalNumber(int personalNumber) {
     this.personalNumber = personalNumber;
   }
 
-  public Integer getPersonalNumber() {
+  public int getPersonalNumber() {
     return personalNumber;
   }
 
@@ -55,10 +54,13 @@ public class Member {
       return false;
     }
     newBoat.setBoatLength(length);
-    newBoat.setBoatId(nextBoatId);
-    nextBoatId += 1;
+    newBoat.setBoatId(getNextBoatId());
     boats.add(newBoat);
     return true;
+  }
+
+  private int getNextBoatId() {
+    return boats.get(boats.size() - 1).getBoatId() + 1;
   }
 
   public Boolean changeBoatType(int boatId, Integer newType) { // flytta till Boat?

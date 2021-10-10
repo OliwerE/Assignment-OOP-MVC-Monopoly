@@ -2,7 +2,7 @@ package controller;
 
 import model.Member;
 
-public class Registry {
+public class RegistryController {
   private model.Registry m_registry = new model.Registry();
   private view.Console v_console = new view.Console();
 

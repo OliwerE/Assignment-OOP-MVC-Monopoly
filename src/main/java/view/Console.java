@@ -10,7 +10,7 @@ import model.Member;
  * Responsible for the user interface.
  */
 public class Console {
-  private Scanner scanner = new Scanner(System.in);
+  private Scanner scanner = new Scanner(System.in, "UTF-8");
 
   /**
    * Displays the title of the application.

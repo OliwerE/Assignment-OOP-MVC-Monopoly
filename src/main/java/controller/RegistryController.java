@@ -58,10 +58,7 @@ public class RegistryController {
   private void closeApplication() {
     console.displayCloseMessage();
     console.closeScanner();
-
     // FIX: Save to "file"
-
-    System.exit(0);
   }
 
   /**
@@ -75,16 +72,19 @@ public class RegistryController {
 
     if (input == 1) {
       showMember(isVerbose);
+      backToMemberList(isVerbose);
     } else if (input == 2) {
       createMember();
+      backToMemberList(isVerbose);
     } else if (input == 3) {
       deleteMember();
+      backToMemberList(isVerbose);
     } else if (input == 4) {
       mainMenu();
     } else {
       console.displayMenuInputError(input);
+      backToMemberList(isVerbose);
     }
-    backToMemberList(isVerbose);
   }
 
   /**
@@ -123,21 +123,33 @@ public class RegistryController {
 
     if (input == 1) {
       registerBoat(member);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     } else if (input == 2) {
       changeBoatType(member);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     } else if (input == 3) {
       changeBoatLength(member);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     } else if (input == 4) {
       changeName(member);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     } else if (input == 5) {
       changePersonalNumber(member);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     } else if (input == 6) {
       backToMemberList(isVerbose);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     } else {
       console.displayMenuInputError(input);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
     }
-    console.displayMember(member); // remove input from showMember!
-    memberMenu(member, isVerbose);
   }
 
   /**

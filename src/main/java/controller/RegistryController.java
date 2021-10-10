@@ -2,18 +2,27 @@ package controller;
 
 import model.Member;
 
+/**
+ * Responsible for model-view communication.
+ */
 public class RegistryController {
-  private model.Registry m_registry = new model.Registry();
-  private view.Console v_console = new view.Console();
+  private model.Registry registry = new model.Registry();
+  private view.Console console = new view.Console();
 
+  /**
+   * Starts the application.
+   */
   public void start() {
-      v_console.displayTitle();
-      mainMenu();
+    console.displayTitle();
+    mainMenu();
   }
 
+  /**
+   * Display and handles main menu input.
+   */
   private void mainMenu() {
-    v_console.displayMainMenu();
-    int input = v_console.getIntInput();
+    console.displayMainMenu();
+    int input = console.getIntInput();
 
     if (input == 1) {
       verboseMemberList();
@@ -22,33 +31,47 @@ public class RegistryController {
     } else if (input == 3) {
       closeApplication();
     } else {
-      v_console.displayMenuInputError(input);
+      console.displayMenuInputError(input);
       mainMenu();
     }
   }
 
+  /**
+   * Displays verbose member list.
+   */
   private void verboseMemberList() {
-    v_console.displayVerboseMemberList(m_registry.getMembers());
+    console.displayVerboseMemberList(registry.getMembers());
     memberListMenu(true);
   }
 
+  /**
+   * Displays compact member list.
+   */
   private void compactMemberList() {
-    v_console.displayCompactMemberList(m_registry.getMembers());
+    console.displayCompactMemberList(registry.getMembers());
     memberListMenu(false);
   }
 
+  /**
+   * Closes the application.
+   */
   private void closeApplication() {
-    v_console.displayCloseMessage();
-    v_console.closeScanner();
+    console.displayCloseMessage();
+    console.closeScanner();
 
     // FIX: Save to "file"
 
     System.exit(0);
   }
 
+  /**
+   * Handles the member list menu.
+
+   * @param isVerbose If member list is verbose.
+   */
   private void memberListMenu(Boolean isVerbose) {
-    v_console.displayMemberListMenu();
-    int input = v_console.getIntInput();
+    console.displayMemberListMenu();
+    int input = console.getIntInput();
 
     if (input == 1) {
       showMember(isVerbose);
@@ -59,12 +82,16 @@ public class RegistryController {
     } else if (input == 4) {
       mainMenu();
     } else {
-      v_console.displayMenuInputError(input);
+      console.displayMenuInputError(input);
     }
-
     backToMemberList(isVerbose);
   }
 
+  /**
+   * Goes back to the member list.
+
+   * @param isVerbose If the last member list was verbose.
+   */
   private void backToMemberList(Boolean isVerbose) {
     if (isVerbose) {
       verboseMemberList();
@@ -73,74 +100,108 @@ public class RegistryController {
     }
   }
 
+  /**
+   * Displays a members information.
+
+   * @param isVerbose If the previous member list was verbose.
+   */
   private void showMember(Boolean isVerbose) { // remove input from showMember!
-    Member member = m_registry.getMemberById(v_console.getIntInput());
-    v_console.displayMember(member);
+    Member member = registry.getMemberById(console.getIntInput());
+    console.displayMember(member);
     memberMenu(member, isVerbose);
   }
 
+  /**
+   * Displays and handles the member menu.
+
+   * @param member Current member.
+   * @param isVerbose If the previous member list was verbose.
+   */
   private void memberMenu(Member member, Boolean isVerbose) {
-    v_console.displayMemberMenu();
-    int input = v_console.getIntInput();
+    console.displayMemberMenu();
+    int input = console.getIntInput();
 
     if (input == 1) {
       registerBoat(member);
     } else if (input == 2) {
-      // change boat type
       changeBoatType(member);
     } else if (input == 3) {
-      // change boat length
       changeBoatLength(member);
     } else if (input == 4) {
       changeName(member);
     } else if (input == 5) {
       changePersonalNumber(member);
     } else if (input == 6) {
-      // back
       backToMemberList(isVerbose);
     } else {
-      v_console.displayMenuInputError(input);
+      console.displayMenuInputError(input);
     }
-    
-    v_console.displayMember(member); // remove input from showMember!
+    console.displayMember(member); // remove input from showMember!
     memberMenu(member, isVerbose);
   }
 
+  /**
+   * Handles register boat to a member.
+
+   * @param member Owner of the boat.
+   */
   private void registerBoat(Member member) {
-    Boolean isRegistered = member.registerBoat(v_console.getBoatType(), v_console.getBoatLength());
-    v_console.displayBoatRegisteredStatus(isRegistered);
+    Boolean isRegistered = member.registerBoat(console.getBoatType(), console.getBoatLength());
+    console.displayBoatRegisteredStatus(isRegistered);
   }
 
+  /**
+   * Handles change boat type.
+
+   * @param member Boat owner.
+   */
   private void changeBoatType(Member member) {
-    Boolean isChanged = member.changeBoatType(v_console.getBoatId(), v_console.getBoatType());
-    boatChangeMessage(isChanged);
+    Boolean isChanged = member.changeBoatType(console.getBoatId(), console.getBoatType());
+    console.displayBoatUpdateMessage(isChanged);
   }
 
-  private void boatChangeMessage(Boolean isChanged) {
-      v_console.displayBoatUpdateMessage(isChanged);
-  }
+  /**
+   * Handles change boat length.
 
+   * @param member Boat owner.
+   */
   private void changeBoatLength(Member member) {
-    Boolean isChanged = member.changeBoatLength(v_console.getBoatId(), v_console.getBoatLength());
-    boatChangeMessage(isChanged);
+    Boolean isChanged = member.changeBoatLength(console.getBoatId(), console.getBoatLength());
+    console.displayBoatUpdateMessage(isChanged);
   }
 
+  /**
+   * Handles change name.
+
+   * @param member Member changing name.
+   */
   private void changeName(Member member) {
-    member.setName(v_console.getMemberName()); // add status msg
+    member.setName(console.getMemberName()); // add status msg
   }
 
+  /**
+   * Handles change personal number.
+
+   * @param member Member changing personal number.
+   */
   private void changePersonalNumber(Member member) {
-    member.setPersonalNumber(v_console.getPersonalNumber()); // add status msg
+    member.setPersonalNumber(console.getPersonalNumber()); // add status msg
   }
 
+  /**
+   * Handles registration of new member.
+   */
   private void createMember() {
-    Boolean isRegistered = m_registry.createMember(v_console.getMemberName(), v_console.getPersonalNumber());
-    v_console.displayRegisterMemberStatus(isRegistered);
+    Boolean isRegistered = registry.createMember(console.getMemberName(), console.getPersonalNumber());
+    console.displayRegisterMemberStatus(isRegistered);
   }
 
+  /**
+   * Handles removal of a member.
+   */
   private void deleteMember() {
-    v_console.deleteMemberMessage();
-    Boolean isRemoved = m_registry.deleteMember(v_console.getIntInput());
-    v_console.displayDeleteMemberStatus(isRemoved);
+    console.deleteMemberMessage();
+    Boolean isRemoved = registry.deleteMember(console.getIntInput());
+    console.displayDeleteMemberStatus(isRemoved);
   }
 }

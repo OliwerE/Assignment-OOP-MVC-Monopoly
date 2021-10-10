@@ -2,14 +2,22 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Responsible to simulate persistent storage.
+ */
 public class RegistryStorage implements RegistryPersistence {
+  /**
+   * Simulates persistent loading of members.
+
+   * @return Loaded members.
+   */
   public ArrayList<Member> loadMemberRegistry() {
 
     ArrayList<Member> registry = new ArrayList<Member>();
 
     // Add members
     int[] personalNumbers = {123456, 234567, 345678};
-    for(int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) {
       Member m = new Member();
       m.setName("Medlem" + Integer.toString(i + 1));
       m.setPersonalNumber(personalNumbers[i]);
@@ -23,10 +31,16 @@ public class RegistryStorage implements RegistryPersistence {
     registry.get(2).registerBoat(2, 150);
 
 
-    return registry; // add hardcoded loading
+    return registry;
   }
 
+  /**
+   * Simulates persistent saving of members.
+
+   * @param r Members to save.
+   * @return If the members has been saved.
+   */
   public Boolean saveMemberRegistry(ArrayList<Member> r) {
-    return true; // = Success
+    return true; // = simulated Success
   }
 }

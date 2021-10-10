@@ -10,7 +10,7 @@ public class App {
    * @param args command line arguments.
    */
   public static void main(String[] args) {
-    RegistryController c_registry = new RegistryController();
-    c_registry.start();
+    RegistryController registryController = new RegistryController();
+    registryController.start();
   }
 }

@@ -2,7 +2,22 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Responible for persistent saving and loading of the registry.
+ */
 interface RegistryPersistence {
+  /**
+   * Loads members from persistent storage.
+
+   * @return Members stored in the registry.
+   */
   public ArrayList<Member> loadMemberRegistry();
+
+  /**
+   * Saves members to persistent storage.
+
+   * @param r Members to save.
+   * @return If the members has been saved.
+   */
   public Boolean saveMemberRegistry(ArrayList<Member> r);
 }

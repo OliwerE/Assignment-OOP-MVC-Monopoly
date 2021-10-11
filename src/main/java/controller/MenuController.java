@@ -115,9 +115,18 @@ public class MenuController {
    */
   private void showMember(Boolean isVerbose) { // remove input from showMember!
     int memberId = ui.getMemberId();
+    ArrayList<Member> members = registryController.getRegistry().getMembers();
+    
+    Boolean exist = false;
+    for (Member m : members) {
+      if (m.getId() == memberId) {
+        exist = true;
+      }
+    }
 
-    if (memberId > registryController.getRegistry().getMembers().size()) {
+    if (!exist) {
       ui.memberDoesNotExistMessage();
+      memberListMenu(isVerbose);
     } else {
       Member member = registryController.getRegistry().getMemberById(memberId);
       ui.displayMember(member);

@@ -105,6 +105,11 @@ public class Registry {
    * @return The requested member.
    */
   public Member getMemberById(int memberId) {
-    return members.get(memberId - 1);
+    for (Member m : members) {
+      if (m.getId() == memberId) {
+        return m;
+      }
+    }
+    return new Member();
   }
 }

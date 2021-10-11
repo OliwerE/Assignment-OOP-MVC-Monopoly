@@ -138,7 +138,8 @@ public class UserInterface extends StatusMessage {
    */
   public String getMemberName() {
     System.out.print("Enter name: ");
-    return input.getStringInput();
+    String i = input.getStringInput();
+    return i;
   }
 
   /**

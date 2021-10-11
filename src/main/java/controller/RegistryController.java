@@ -4,177 +4,50 @@ import java.util.ArrayList;
 import model.domain.Boat;
 import model.domain.Member;
 import model.persistence.RegistryStorage;
+import view.UserInterface;
 
 /**
  * Responsible for model-view communication.
  */
 public class RegistryController {
   private model.domain.Registry registry = new model.domain.Registry();
-  private view.UserInterface ui = new view.UserInterface();
+  private view.UserInterface ui;
   private model.persistence.RegistryStorage registryStorage = new RegistryStorage();
 
   /**
-   * Starts the application.
+   * Add userInterface to Registry controller.
+
+   * @param u User interface.
    */
-  public void start() {
-    ui.displayTitle();
-    loadPersistentData();
-    mainMenu();
+  public RegistryController(UserInterface u) {
+    ui = u;
   }
 
-  private void loadPersistentData() {
+  /**
+   * Returns the registry object.
+
+   * @return Registry object.
+   */
+  protected model.domain.Registry getRegistry() {
+    return registry;
+  }
+
+  /**
+   * Loads persistent registry data.
+   */
+  protected void loadPersistentData() {
     ui.displayLoadMembersMessage();
     Boolean isSuccess = registryStorage.loadMemberRegistry(registry);
     ui.displayLoadMembersStatus(isSuccess);
   }
 
   /**
-   * Display and handles main menu input.
+   * Saves registered members.
    */
-  private void mainMenu() {
-    String mainMenuText = "Verbose member list (1), compact member list (2), exit (3): ";
-    ui.printLine(mainMenuText);
-    int input = ui.getScanner().getIntInput();
-
-    if (input == 1) {
-      verboseMemberList();
-    } else if (input == 2) {
-      compactMemberList();
-    } else if (input == 3) {
-      closeApplication();
-    } else {
-      ui.displayMenuInputError(input);
-      mainMenu();
-    }
-  }
-
-  /**
-   * Displays verbose member list.
-   */
-  private void verboseMemberList() {
-    ui.displayVerboseMemberList(registry.getMembers());
-    memberListMenu(true);
-  }
-
-  /**
-   * Displays compact member list.
-   */
-  private void compactMemberList() {
-    ui.displayCompactMemberList(registry.getMembers());
-    memberListMenu(false);
-  }
-
-  /**
-   * Closes the application.
-   */
-  private void closeApplication() {
-    ui.displayCloseMessage();
-    saveToPersistentStorage();
-    ui.getScanner().closeScanner();
-  }
-
-  private void saveToPersistentStorage() {
+  protected void saveToPersistentStorage() {
     ui.displaySaveMembersMessage();
     Boolean isSuccess = registryStorage.saveMemberRegistry(registry.getMembers());
     ui.displaySaveMembersStatus(isSuccess);
-  }
-
-  /**
-   * Handles the member list menu.
-
-   * @param isVerbose If member list is verbose.
-   */
-  private void memberListMenu(Boolean isVerbose) {
-    String memberListMenuText = "Show member (1), create member (2), delete member (3), main Menu (4): ";
-    ui.printLine(memberListMenuText);
-    int input = ui.getScanner().getIntInput();
-
-    if (input == 1) {
-      showMember(isVerbose);
-    } else if (input == 2) {
-      createMember();
-      backToMemberList(isVerbose);
-    } else if (input == 3) {
-      deleteMember();
-      backToMemberList(isVerbose);
-    } else if (input == 4) {
-      mainMenu();
-    } else {
-      ui.displayMenuInputError(input);
-      backToMemberList(isVerbose);
-    }
-  }
-
-  /**
-   * Goes back to the member list.
-
-   * @param isVerbose If the last member list was verbose.
-   */
-  private void backToMemberList(Boolean isVerbose) {
-    if (isVerbose) {
-      verboseMemberList();
-    } else {
-      compactMemberList();
-    }
-  }
-
-  /**
-   * Displays a members information.
-
-   * @param isVerbose If the previous member list was verbose.
-   */
-  private void showMember(Boolean isVerbose) { // remove input from showMember!
-    int memberId = ui.getScanner().getIntInput();
-
-    if (memberId > registry.getMembers().size()) {
-      ui.memberDoesNotExistMessage();
-    } else {
-      Member member = registry.getMemberById(memberId);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    }
-  }
-
-  /**
-   * Displays and handles the member menu.
-
-   * @param member Current member.
-   * @param isVerbose If the previous member list was verbose.
-   */
-  private void memberMenu(Member member, Boolean isVerbose) {
-    // Gradle doesn't like long strings..
-    String memberMenuText1 = "Register boat (1), change boat type (2), change boat lenght (3)";
-    String memberMenuText2 = ", Change name (4), change personal number (5), back (6): ";
-    ui.printLine(memberMenuText1 + memberMenuText2);
-    int input = ui.getScanner().getIntInput();
-
-    if (input == 1) {
-      registerBoat(member);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    } else if (input == 2) {
-      changeBoatType(member);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    } else if (input == 3) {
-      changeBoatLength(member);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    } else if (input == 4) {
-      changeName(member);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    } else if (input == 5) {
-      changePersonalNumber(member);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    } else if (input == 6) {
-      backToMemberList(isVerbose);
-    } else {
-      ui.displayMenuInputError(input);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
-    }
   }
 
   /**
@@ -182,7 +55,7 @@ public class RegistryController {
 
    * @param member Owner of the boat.
    */
-  private void registerBoat(Member member) {
+  protected void registerBoat(Member member) {
     Boolean isRegistered = member.registerBoat(ui.getBoatType(member.getBoatTypesMenu()), ui.getBoatLength());
     ui.displayBoatRegisteredStatus(isRegistered);
   }
@@ -192,7 +65,7 @@ public class RegistryController {
 
    * @param member Boat owner.
    */
-  private void changeBoatType(Member member) {
+  protected void changeBoatType(Member member) {
     int boatId = ui.getBoatId();
     if (boatId > member.getBoats().size()) {
       ui.boatDoesNotExistMessage();
@@ -208,7 +81,7 @@ public class RegistryController {
 
    * @param member Boat owner.
    */
-  private void changeBoatLength(Member member) {
+  protected void changeBoatLength(Member member) {
     int boatId = ui.getBoatId();
     if (boatId > member.getBoats().size()) {
       ui.boatDoesNotExistMessage();
@@ -225,7 +98,7 @@ public class RegistryController {
 
    * @param member Member changing name.
    */
-  private void changeName(Member member) {
+  protected void changeName(Member member) {
     member.setName(ui.getMemberName()); // add status msg
   }
 
@@ -234,22 +107,24 @@ public class RegistryController {
 
    * @param member Member changing personal number.
    */
-  private void changePersonalNumber(Member member) {
+  protected void changePersonalNumber(Member member) {
     member.setPersonalNumber(ui.getPersonalNumber()); // add status msg
   }
 
   /**
    * Handles registration of new member.
    */
-  private void createMember() {
-    Boolean isRegistered = registry.createMember(ui.getMemberName(), ui.getPersonalNumber());
+  protected void createMember() {
+    String name = ui.getMemberName();
+    int personalNumber = ui.getPersonalNumber();
+    Boolean isRegistered = registry.createMember(name, personalNumber);
     ui.displayRegisterMemberStatus(isRegistered);
   }
 
   /**
    * Handles removal of a member.
    */
-  private void deleteMember() {
+  protected void deleteMember() {
     ui.deleteMemberMessage();
     int memberId = ui.getScanner().getIntInput();
     

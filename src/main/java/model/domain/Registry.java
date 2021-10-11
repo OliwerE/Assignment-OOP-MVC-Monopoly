@@ -1,4 +1,4 @@
-package model;
+package model.domain;
 
 import java.util.ArrayList;
 
@@ -6,14 +6,43 @@ import java.util.ArrayList;
  * Responsible for boat registry.
  */
 public class Registry {
-  private RegistryStorage storage = new RegistryStorage();
-  private ArrayList<Member> members;
+  private ArrayList<Member> members = new ArrayList<>();;
 
   /**
    * Constructs boat registry .
    */
+  /*
   public Registry() {
     members = storage.loadMemberRegistry();
+  }
+  */
+
+  /**
+   * Adds persistent member to the members registry.
+
+   * @param name Name of the member.
+   * @param personalNumber Personal number.
+   * @param id Member id.
+   * @return The loaded member.
+   */
+  public Member loadPersistentMember(String name, int personalNumber, int id) {
+    Member m = new Member();
+    m.setName(name);
+    m.setPersonalNumber(personalNumber);
+    m.setId(id);
+    members.add(m);
+    return m;
+  }
+
+  /**
+   * Loads persistent boat.
+
+   * @param m Member registered to.
+   * @param type Boat type.
+   * @param length Boat lenght.
+   */
+  public void loadBoat(Member m, int type, int length) {
+    m.registerBoat(type, length);
   }
 
   /**
@@ -23,7 +52,7 @@ public class Registry {
    * @param personalNumber Personal number.
    * @return If the member has been created.
    */
-  public Boolean createMember(String name, int personalNumber) { // TODO: Add personal number!!!
+  public Boolean createMember(String name, int personalNumber) {
     if (name.length() > 0) {
       Member m = new Member();
       m.setId(getNextId());

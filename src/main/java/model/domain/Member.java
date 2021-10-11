@@ -1,4 +1,4 @@
-package model;
+package model.domain;
 
 import java.util.ArrayList;
 
@@ -64,12 +64,6 @@ public class Member {
   public void setPersonalNumber(int personalNumber) {
     this.personalNumber = personalNumber;
   }
-
-  /* används ej?
-  protected void addBoat(Boat b) {
-    boats.add(b);
-  }
-  */
 
   /**
    * Get registered boats.
@@ -167,7 +161,7 @@ public class Member {
    * @param b  Boat to remove.
    * @return If the boat has been removed.
    */
-  public Boolean removeBoat(Boat b) {
+  protected Boolean removeBoat(Boat b) {
     boats.remove(b);
     if (boats.contains(b)) {
       return false;

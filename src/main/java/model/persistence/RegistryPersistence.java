@@ -1,6 +1,9 @@
-package model;
+package model.persistence;
 
 import java.util.ArrayList;
+
+import model.domain.Member;
+import model.domain.Registry;
 
 /**
  * Responible for persistent saving and loading of the registry.
@@ -11,7 +14,7 @@ interface RegistryPersistence {
 
    * @return Members stored in the registry.
    */
-  public ArrayList<Member> loadMemberRegistry();
+  public Boolean loadMemberRegistry(Registry registry);
 
   /**
    * Saves members to persistent storage.

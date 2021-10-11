@@ -1,4 +1,4 @@
-package model;
+package model.domain;
 
 /**
  * Represent registered boat.
@@ -58,7 +58,7 @@ public class Boat {
 
    * @param boatId New boat id.
    */
-  public void setBoatId(int boatId) {
+  protected void setBoatId(int boatId) {
     this.boatId = boatId;
   }
 }

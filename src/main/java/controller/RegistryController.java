@@ -1,20 +1,33 @@
 package controller;
 
-import model.Member;
+import model.domain.Member;
+import model.persistence.RegistryStorage;
 
 /**
  * Responsible for model-view communication.
  */
 public class RegistryController {
-  private model.Registry registry = new model.Registry();
+  private model.domain.Registry registry = new model.domain.Registry();
   private view.Console console = new view.Console();
+  private model.persistence.RegistryStorage registryStorage = new RegistryStorage();
 
   /**
    * Starts the application.
    */
   public void start() {
     console.displayTitle();
+    loadPersistentData();
     mainMenu();
+  }
+
+  private void loadPersistentData() {
+    console.printLine("Loading members...");
+    Boolean isLoaded = registryStorage.loadMemberRegistry(registry);
+    if (isLoaded) {
+      console.printLine("Members has been loaded!");
+    } else {
+      console.printLine("Error: Could not load members.");
+    }
   }
 
   /**
@@ -58,7 +71,17 @@ public class RegistryController {
   private void closeApplication() {
     console.displayCloseMessage();
     console.closeScanner();
-    // FIX: Save to "file"
+    saveToPersistentStorage();
+  }
+
+  private void saveToPersistentStorage() {
+    console.printLine("Saving members...");
+    Boolean isSaved = registryStorage.saveMemberRegistry(registry.getMembers());
+    if (isSaved) {
+      console.printLine("Members has been saved!");
+    } else {
+      console.printLine("Error: Members has not been saved.");
+    }
   }
 
   /**

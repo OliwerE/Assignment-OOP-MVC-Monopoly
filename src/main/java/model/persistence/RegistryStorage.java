@@ -1,6 +1,9 @@
-package model;
+package model.persistence;
 
 import java.util.ArrayList;
+
+import model.domain.Member;
+import model.domain.Registry;
 
 /**
  * Responsible to simulate persistent storage.
@@ -11,27 +14,24 @@ public class RegistryStorage implements RegistryPersistence {
 
    * @return Loaded members.
    */
-  public ArrayList<Member> loadMemberRegistry() {
-
-    ArrayList<Member> registry = new ArrayList<Member>();
-
+  public Boolean loadMemberRegistry(Registry registry) {
     // Add members
     int[] personalNumbers = {123456, 234567, 345678};
     for (int i = 0; i < 3; i++) {
-      Member m = new Member();
-      m.setName("Medlem" + Integer.toString(i + 1));
-      m.setPersonalNumber(personalNumbers[i]);
-      m.setId(i + 1);
-      registry.add(m);
+      String name = "Medlem" + Integer.toString(i + 1);
+      int personalNumber = personalNumbers[i];
+      int id = i + 1;
+      Member m = registry.loadPersistentMember(name, personalNumber, id);
+
+      // Add boats
+      if (i == 0) {
+        registry.loadBoat(m, 1, 200);
+        registry.loadBoat(m, 3, 100);
+      } else if (i == 2) {
+        registry.loadBoat(m, 2, 150);
+      }
     }
-
-    // Add boats to members
-    registry.get(0).registerBoat(1, 200);
-    registry.get(0).registerBoat(3, 100);
-    registry.get(2).registerBoat(2, 150);
-
-
-    return registry;
+    return true; // = Success
   }
 
   /**

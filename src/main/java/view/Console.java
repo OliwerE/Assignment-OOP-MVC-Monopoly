@@ -3,8 +3,9 @@ package view;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import model.Boat;
-import model.Member;
+
+import model.domain.Boat;
+import model.domain.Member;
 
 /**
  * Responsible for the user interface.
@@ -60,7 +61,7 @@ public class Console {
 
    * @param s The line to print.
    */
-  private void printLine(String s) {
+  public void printLine(String s) {
     System.out.println(s);
   }
 

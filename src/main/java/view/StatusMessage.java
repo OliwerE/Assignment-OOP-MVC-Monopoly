@@ -125,4 +125,17 @@ public class StatusMessage {
       System.out.println("Boat has not been updated.");
     }
   }
+
+  /**
+   * Displays remove boat status.
+   * 
+   * @param isSuccess If the boat has been removed.
+   */
+  public void displayBoatRemovedMessage(Boolean isSuccess) {
+    if (isSuccess) {
+      System.out.println("Boat has been removed!");
+    } else {
+      System.out.println("Boat has not been removed.");
+    }
+  }
 }

@@ -134,7 +134,7 @@ public class MenuController {
   private void memberMenu(Member member, Boolean isVerbose) {
     // Gradle doesn't like long strings..
     String memberMenuText1 = "Register boat (1), change boat type (2), change boat lenght (3)";
-    String memberMenuText2 = ", Change name (4), change personal number (5), back (6): ";
+    String memberMenuText2 = ", remove boat(4), Change name (5), change personal number (6), back (7): ";
     ui.printLine(memberMenuText1 + memberMenuText2);
     int input = ui.getScanner().getIntInput();
 
@@ -151,14 +151,18 @@ public class MenuController {
       ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 4) {
-      registryController.changeName(member);
+      registryController.removeBoat(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 5) {
-      registryController.changePersonalNumber(member);
+      registryController.changeName(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 6) {
+      registryController.changePersonalNumber(member);
+      ui.displayMember(member);
+      memberMenu(member, isVerbose);
+    } else if (input == 7) {
       backToMemberList(isVerbose);
     } else {
       ui.displayMenuInputError(input);

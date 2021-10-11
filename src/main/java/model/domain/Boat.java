@@ -6,7 +6,6 @@ package model.domain;
 public class Boat {
   private String boatType;
   private int boatLength;
-  private int boatId;
 
   /**
    * Returns the boat type.
@@ -42,23 +41,5 @@ public class Boat {
    */
   protected void setBoatLength(int boatLength) {
     this.boatLength = boatLength;
-  }
-
-  /**
-   * Returns the boat id.
-
-   * @return Boat id.
-   */
-  public int getBoatId() {
-    return boatId;
-  }
-
-  /**
-   * Changes the boat id.
-
-   * @param boatId New boat id.
-   */
-  protected void setBoatId(int boatId) {
-    this.boatId = boatId;
   }
 }

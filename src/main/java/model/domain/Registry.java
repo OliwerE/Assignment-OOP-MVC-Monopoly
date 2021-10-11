@@ -46,6 +46,26 @@ public class Registry {
   }
 
   /**
+   * Changes member name in the registry.
+
+   * @param m Member.
+   * @param newName New name.
+   */
+  public void changeMemberName(Member m, String newName) {
+    m.setName(newName);
+  }
+
+  /**
+   * Changes personal number in the registry.
+   * 
+   * @param m Member.
+   * @param newName New personal number.
+   */
+  public void changePersonalNumber(Member m, int newPersonalNumber) {
+    m.setPersonalNumber(newPersonalNumber);
+  }
+
+  /**
    * Returns next available member id.
 
    * @return Next available member id.

@@ -66,7 +66,7 @@ public class RegistryController {
    * @param member Boat owner.
    */
   protected void changeBoatType(Member member) {
-    int boatId = ui.getBoatId();
+    int boatId = ui.getBoatNumber();
     if (boatId > member.getBoats().size()) {
       ui.boatDoesNotExistMessage();
     } else {
@@ -82,7 +82,7 @@ public class RegistryController {
    * @param member Boat owner.
    */
   protected void changeBoatLength(Member member) {
-    int boatId = ui.getBoatId();
+    int boatId = ui.getBoatNumber();
     if (boatId > member.getBoats().size()) {
       ui.boatDoesNotExistMessage();
     } else {
@@ -90,7 +90,17 @@ public class RegistryController {
       Boolean isChanged = member.changeBoatLength(boat, ui.getBoatLength());
       ui.displayBoatUpdateMessage(isChanged);
     }
+  }
 
+  protected void removeBoat(Member m) {
+    int boatNumber = ui.getBoatNumber();
+    if (boatNumber <= m.getBoats().size()) {
+      Boat b = m.getBoats().get(boatNumber - 1);
+      Boolean isSuccess = m.removeBoat(b);
+      ui.displayBoatRemovedMessage(isSuccess);
+    } else {
+      ui.displayBoatRemovedMessage(false);
+    }
   }
 
   /**
@@ -99,7 +109,7 @@ public class RegistryController {
    * @param member Member changing name.
    */
   protected void changeName(Member member) {
-    member.setName(ui.getMemberName()); // add status msg
+    registry.changeMemberName(member, ui.getMemberName());
   }
 
   /**
@@ -108,7 +118,7 @@ public class RegistryController {
    * @param member Member changing personal number.
    */
   protected void changePersonalNumber(Member member) {
-    member.setPersonalNumber(ui.getPersonalNumber()); // add status msg
+    registry.changePersonalNumber(member, ui.getPersonalNumber());
   }
 
   /**

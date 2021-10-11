@@ -87,7 +87,7 @@ public class UserInterface extends StatusMessage {
     System.out.println("Boats:");
     for (int j = 0; j < boats.size(); j++) {
       System.out.println("----");
-      System.out.println("Boat id: " + boats.get(j).getBoatId());
+      System.out.println("Boat : " + Integer.toString(j + 1));
       System.out.println("Type: " + boats.get(j).getBoatType());
       System.out.println("Length: " + boats.get(j).getBoatLength());
     }
@@ -126,8 +126,8 @@ public class UserInterface extends StatusMessage {
 
    * @return Boat id from user.
    */
-  public int getBoatId() {
-    System.out.print("Enter boat id: ");
+  public int getBoatNumber() {
+    System.out.print("Enter boat number: ");
     return input.getIntInput();
   }
 

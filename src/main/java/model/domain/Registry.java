@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Responsible for boat registry.
  */
 public class Registry {
-  private ArrayList<Member> members = new ArrayList<>();;
+  private ArrayList<Member> members = new ArrayList<>();
 
   /**
    * Adds persistent member to the members registry.
@@ -66,7 +66,7 @@ public class Registry {
   /**
    * Removes a member.
 
-   * @param memberId Unique id of the member to remove.
+   * @param memberToRemove Member to remove.
    * @return If the member has been removed
    */
   public boolean deleteMember(Member memberToRemove) {

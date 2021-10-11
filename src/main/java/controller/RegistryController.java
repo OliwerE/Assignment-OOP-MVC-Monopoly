@@ -1,9 +1,9 @@
 package controller;
 
-import model.domain.Member;
-import model.domain.Boat;
-import model.persistence.RegistryStorage;
 import java.util.ArrayList;
+import model.domain.Boat;
+import model.domain.Member;
+import model.persistence.RegistryStorage;
 
 /**
  * Responsible for model-view communication.

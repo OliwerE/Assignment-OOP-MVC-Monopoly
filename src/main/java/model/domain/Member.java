@@ -116,7 +116,7 @@ public class Member {
   /**
    * Updates boat type.
 
-   * @param boatId Id of the boat to modify.
+   * @param boat Boat to modify.
    * @param newType New boat type.
    * @return If the boat has been updated.
    */
@@ -138,7 +138,7 @@ public class Member {
   /**
    * Updates boat length.
 
-   * @param boatId  Id of the boat to modify.
+   * @param boat  Boat to modify.
    * @param newLength New boat length.
    * @return If the boat has been updated.
    */

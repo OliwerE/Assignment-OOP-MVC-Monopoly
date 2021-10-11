@@ -35,17 +35,6 @@ public class Registry {
   }
 
   /**
-   * Loads persistent boat.
-
-   * @param m Member registered to.
-   * @param type Boat type.
-   * @param length Boat lenght.
-   */
-  public void loadBoat(Member m, int type, int length) {
-    m.registerBoat(type, length);
-  }
-
-  /**
    * Create new member.
 
    * @param name  Name of the new member.

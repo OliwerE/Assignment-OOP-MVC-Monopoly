@@ -25,10 +25,10 @@ public class RegistryStorage implements RegistryPersistence {
 
       // Add boats
       if (i == 0) {
-        registry.loadBoat(m, 1, 200);
-        registry.loadBoat(m, 3, 100);
+        m.registerBoat(1, 200);
+        m.registerBoat(3, 100);
       } else if (i == 2) {
-        registry.loadBoat(m, 2, 150);
+        m.registerBoat(2, 150);
       }
     }
     return true; // = Success

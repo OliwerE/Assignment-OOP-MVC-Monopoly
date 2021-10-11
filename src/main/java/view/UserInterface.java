@@ -1,16 +1,18 @@
 package view;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import model.domain.Boat;
 import model.domain.Member;
 
 /**
  * Responsible for the user interface.
  */
-public class Console {
-  private Scanner scanner = new Scanner(System.in, "UTF-8");
+public class UserInterface extends StatusMessage {
+  private UserInput input = new UserInput();
+
+  public UserInput getScanner() {
+    return input;
+  }
 
   /**
    * Displays the title of the application.
@@ -24,20 +26,6 @@ public class Console {
    */
   public void displayMainMenu() {
     System.out.print("Verbose member list (1), compact member list (2), exit (3): ");
-  }
-
-  /**
-   * Handles integer input from the user.
-
-   * @return User input.
-   */
-  public int getIntInput() {
-    try {
-      return scanner.nextInt();
-    } catch (InputMismatchException e) {
-      System.out.println(e);
-      return -1;
-    }
   }
 
   /**
@@ -128,29 +116,6 @@ public class Console {
   }
 
   /**
-   * Displays close message.
-   */
-  public void displayCloseMessage() {
-    System.out.println("Closes application...");
-  }
-
-  /**
-   * Closes the input scanner.
-   */
-  public void closeScanner() {
-    scanner.close();
-  }
-
-  /**
-   * Displays menu input error.
-
-   * @param input Input from user.
-   */
-  public void displayMenuInputError(int input) {
-    System.out.println(input + " is not an alternative!");
-  }
-
-  /**
    * Displays member list menu.
    */
   public void displayMemberListMenu() {
@@ -185,7 +150,7 @@ public class Console {
    */
   public int getBoatId() {
     System.out.print("Enter boat id: ");
-    return getIntInput();
+    return input.getIntInput();
   }
 
   /**
@@ -195,21 +160,7 @@ public class Console {
    */
   public String getMemberName() {
     System.out.print("Enter name: ");
-    return getStringInput();
-  }
-
-  /**
-   * Returns string input from user.
-
-   * @return User input.
-   */
-  public String getStringInput() {
-    try {
-      return scanner.next();
-    } catch (InputMismatchException e) {
-      System.out.println(e);
-      return "";
-    }
+    return input.getStringInput();
   }
 
   /**
@@ -219,20 +170,7 @@ public class Console {
    */
   public int getPersonalNumber() {
     System.out.print("Enter personal number: ");
-    return getIntInput();
-  }
-
-  /**
-   * Displays member registration status.
-
-   * @param isSuccess If the member has been registered.
-   */
-  public void displayRegisterMemberStatus(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.print("Member has been registered!");
-    } else {
-      System.out.print("Member has not been registered.");
-    }
+    return input.getIntInput();
   }
 
   /**
@@ -243,26 +181,13 @@ public class Console {
   }
 
   /**
-   * Displays delete member status.
-
-   * @param isSuccess If the member has been removed
-   */
-  public void displayDeleteMemberStatus(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.print("Member has been removed!");
-    } else {
-      System.out.print("Member has not been removed.");
-    }
-  }
-
-  /**
    * Handles get boat type from user.
 
    * @return Boat type from user.
    */
   public int getBoatType() {
     System.out.print("Enter boat type (1 = Sailboat, 2 = Motorsailer, 3 = Kayak/Canoe, 4 = Other): ");
-    return getIntInput();
+    return input.getIntInput();
   }
 
   /**
@@ -272,32 +197,6 @@ public class Console {
    */
   public int getBoatLength() {
     System.out.print("Enter boat length: ");
-    return getIntInput();
-  }
-
-  /**
-   * Displays register boat status.
-
-   * @param isSuccess If the boat has been registered.
-   */
-  public void displayBoatRegisteredStatus(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.print("Boat has been registered!");
-    } else {
-      System.out.print("Boat has not been registered.");
-    }
-  }
-
-  /**
-   * Displays update boat status.
-
-   * @param isSuccess If the boat has been updated.
-   */
-  public void displayBoatUpdateMessage(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.println("Boat has been updated!");
-    } else {
-      System.out.println("Boat has not been updated.");
-    }
+    return input.getIntInput();
   }
 }

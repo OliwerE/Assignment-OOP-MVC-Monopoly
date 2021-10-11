@@ -10,34 +10,30 @@ import model.persistence.RegistryStorage;
  */
 public class RegistryController {
   private model.domain.Registry registry = new model.domain.Registry();
-  private view.Console console = new view.Console();
+  private view.UserInterface ui = new view.UserInterface();
   private model.persistence.RegistryStorage registryStorage = new RegistryStorage();
 
   /**
    * Starts the application.
    */
   public void start() {
-    console.displayTitle();
+    ui.displayTitle();
     loadPersistentData();
     mainMenu();
   }
 
   private void loadPersistentData() {
-    console.printLine("Loading members...");
-    Boolean isLoaded = registryStorage.loadMemberRegistry(registry);
-    if (isLoaded) {
-      console.printLine("Members has been loaded!");
-    } else {
-      console.printLine("Error: Could not load members.");
-    }
+    ui.displayLoadMembersMessage();
+    Boolean isSuccess = registryStorage.loadMemberRegistry(registry);
+    ui.displayLoadMembersStatus(isSuccess);
   }
 
   /**
    * Display and handles main menu input.
    */
   private void mainMenu() {
-    console.displayMainMenu();
-    int input = console.getIntInput();
+    ui.displayMainMenu();
+    int input = ui.getScanner().getIntInput();
 
     if (input == 1) {
       verboseMemberList();
@@ -46,7 +42,7 @@ public class RegistryController {
     } else if (input == 3) {
       closeApplication();
     } else {
-      console.displayMenuInputError(input);
+      ui.displayMenuInputError(input);
       mainMenu();
     }
   }
@@ -55,7 +51,7 @@ public class RegistryController {
    * Displays verbose member list.
    */
   private void verboseMemberList() {
-    console.displayVerboseMemberList(registry.getMembers());
+    ui.displayVerboseMemberList(registry.getMembers());
     memberListMenu(true);
   }
 
@@ -63,7 +59,7 @@ public class RegistryController {
    * Displays compact member list.
    */
   private void compactMemberList() {
-    console.displayCompactMemberList(registry.getMembers());
+    ui.displayCompactMemberList(registry.getMembers());
     memberListMenu(false);
   }
 
@@ -71,19 +67,15 @@ public class RegistryController {
    * Closes the application.
    */
   private void closeApplication() {
-    console.displayCloseMessage();
+    ui.displayCloseMessage();
     saveToPersistentStorage();
-    console.closeScanner();
+    ui.getScanner().closeScanner();
   }
 
   private void saveToPersistentStorage() {
-    console.printLine("Saving members...");
-    Boolean isSaved = registryStorage.saveMemberRegistry(registry.getMembers());
-    if (isSaved) {
-      console.printLine("Members has been saved!");
-    } else {
-      console.printLine("Error: Members has not been saved.");
-    }
+    ui.displaySaveMembersMessage();
+    Boolean isSuccess = registryStorage.saveMemberRegistry(registry.getMembers());
+    ui.displaySaveMembersStatus(isSuccess);
   }
 
   /**
@@ -92,8 +84,8 @@ public class RegistryController {
    * @param isVerbose If member list is verbose.
    */
   private void memberListMenu(Boolean isVerbose) {
-    console.displayMemberListMenu();
-    int input = console.getIntInput();
+    ui.displayMemberListMenu();
+    int input = ui.getScanner().getIntInput();
 
     if (input == 1) {
       showMember(isVerbose);
@@ -107,7 +99,7 @@ public class RegistryController {
     } else if (input == 4) {
       mainMenu();
     } else {
-      console.displayMenuInputError(input);
+      ui.displayMenuInputError(input);
       backToMemberList(isVerbose);
     }
   }
@@ -131,13 +123,13 @@ public class RegistryController {
    * @param isVerbose If the previous member list was verbose.
    */
   private void showMember(Boolean isVerbose) { // remove input from showMember!
-    int memberId = console.getIntInput();
+    int memberId = ui.getScanner().getIntInput();
 
     if (memberId > registry.getMembers().size()) {
-      console.printLine("Member does not exist!");
+      ui.memberDoesNotExistMessage();
     } else {
       Member member = registry.getMemberById(memberId);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     }
   }
@@ -149,36 +141,36 @@ public class RegistryController {
    * @param isVerbose If the previous member list was verbose.
    */
   private void memberMenu(Member member, Boolean isVerbose) {
-    console.displayMemberMenu();
-    int input = console.getIntInput();
+    ui.displayMemberMenu();
+    int input = ui.getScanner().getIntInput();
 
     if (input == 1) {
       registerBoat(member);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 2) {
       changeBoatType(member);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 3) {
       changeBoatLength(member);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 4) {
       changeName(member);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 5) {
       changePersonalNumber(member);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else if (input == 6) {
       backToMemberList(isVerbose);
-      console.displayMember(member);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     } else {
-      console.displayMenuInputError(input);
-      console.displayMember(member);
+      ui.displayMenuInputError(input);
+      ui.displayMember(member);
       memberMenu(member, isVerbose);
     }
   }
@@ -189,8 +181,8 @@ public class RegistryController {
    * @param member Owner of the boat.
    */
   private void registerBoat(Member member) {
-    Boolean isRegistered = member.registerBoat(console.getBoatType(), console.getBoatLength());
-    console.displayBoatRegisteredStatus(isRegistered);
+    Boolean isRegistered = member.registerBoat(ui.getBoatType(), ui.getBoatLength());
+    ui.displayBoatRegisteredStatus(isRegistered);
   }
 
   /**
@@ -199,13 +191,13 @@ public class RegistryController {
    * @param member Boat owner.
    */
   private void changeBoatType(Member member) {
-    int boatId = console.getBoatId();
+    int boatId = ui.getBoatId();
     if (boatId > member.getBoats().size()) {
-      console.printLine("Boat does not exist!");
+      ui.boatDoesNotExistMessage();
     } else {
       Boat boat = member.getBoats().get(boatId - 1);
-      Boolean isChanged = member.changeBoatType(boat, console.getBoatType());
-      console.displayBoatUpdateMessage(isChanged);
+      Boolean isChanged = member.changeBoatType(boat, ui.getBoatType());
+      ui.displayBoatUpdateMessage(isChanged);
     }
   }
 
@@ -215,13 +207,13 @@ public class RegistryController {
    * @param member Boat owner.
    */
   private void changeBoatLength(Member member) {
-    int boatId = console.getBoatId();
+    int boatId = ui.getBoatId();
     if (boatId > member.getBoats().size()) {
-      console.printLine("Boat does not exist!");
+      ui.boatDoesNotExistMessage();
     } else {
       Boat boat = member.getBoats().get(boatId - 1);
-      Boolean isChanged = member.changeBoatLength(boat, console.getBoatLength());
-      console.displayBoatUpdateMessage(isChanged);
+      Boolean isChanged = member.changeBoatLength(boat, ui.getBoatLength());
+      ui.displayBoatUpdateMessage(isChanged);
     }
 
   }
@@ -232,7 +224,7 @@ public class RegistryController {
    * @param member Member changing name.
    */
   private void changeName(Member member) {
-    member.setName(console.getMemberName()); // add status msg
+    member.setName(ui.getMemberName()); // add status msg
   }
 
   /**
@@ -241,23 +233,23 @@ public class RegistryController {
    * @param member Member changing personal number.
    */
   private void changePersonalNumber(Member member) {
-    member.setPersonalNumber(console.getPersonalNumber()); // add status msg
+    member.setPersonalNumber(ui.getPersonalNumber()); // add status msg
   }
 
   /**
    * Handles registration of new member.
    */
   private void createMember() {
-    Boolean isRegistered = registry.createMember(console.getMemberName(), console.getPersonalNumber());
-    console.displayRegisterMemberStatus(isRegistered);
+    Boolean isRegistered = registry.createMember(ui.getMemberName(), ui.getPersonalNumber());
+    ui.displayRegisterMemberStatus(isRegistered);
   }
 
   /**
    * Handles removal of a member.
    */
   private void deleteMember() {
-    console.deleteMemberMessage();
-    int memberId = console.getIntInput();
+    ui.deleteMemberMessage();
+    int memberId = ui.getScanner().getIntInput();
     
     ArrayList<Member> members = registry.getMembers();
     Member memberToRemove;
@@ -266,14 +258,14 @@ public class RegistryController {
       if (memberId == m.getId()) {
         memberToRemove = m;
         Boolean isRemoved = registry.deleteMember(memberToRemove);
-        console.displayDeleteMemberStatus(isRemoved);
+        ui.displayDeleteMemberStatus(isRemoved);
         isFound = true;
         break;
       }
     }
 
     if (!isFound) {
-      console.printLine("Can not remove non existing member.");
+      ui.memberDoesNotExistMessage();
     }
   }
 }

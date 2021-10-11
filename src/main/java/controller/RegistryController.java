@@ -132,9 +132,15 @@ public class RegistryController {
    * @param isVerbose If the previous member list was verbose.
    */
   private void showMember(Boolean isVerbose) { // remove input from showMember!
-    Member member = registry.getMemberById(console.getIntInput());
-    console.displayMember(member);
-    memberMenu(member, isVerbose);
+    int memberId = console.getIntInput();
+
+    if (memberId > registry.getMembers().size()) {
+      console.printLine("Member does not exist!");
+    } else {
+      Member member = registry.getMemberById(memberId);
+      console.displayMember(member);
+      memberMenu(member, isVerbose);
+    }
   }
 
   /**

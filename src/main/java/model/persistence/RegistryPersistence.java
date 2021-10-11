@@ -18,7 +18,7 @@ interface RegistryPersistence {
   /**
    * Saves members to persistent storage.
 
-   * @param r Members to save.
+   * @param registry Members to save.
    * @return If the members has been saved.
    */
   public Boolean saveMemberRegistry(ArrayList<Member> registry);

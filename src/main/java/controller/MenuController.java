@@ -141,7 +141,7 @@ public class MenuController {
    * @param isVerbose If the previous member list was verbose.
    */
   private void memberMenu(Member member, Boolean isVerbose) {
-    // Gradle doesn't like long strings..
+    // Gradle doesn't like long strings...
     String memberMenuText1 = "Register boat (1), change boat type (2), change boat lenght (3)";
     String memberMenuText2 = ", remove boat(4), Change name (5), change personal number (6), back (7): ";
     ui.printLine(memberMenuText1 + memberMenuText2);

@@ -30,7 +30,7 @@ public class RegistryStorage implements RegistryPersistence {
         m.registerBoat(2, 150);
       }
     }
-    return true; // = Success
+    return true; // = Hard coded success.
   }
 
   /**
@@ -40,6 +40,6 @@ public class RegistryStorage implements RegistryPersistence {
    * @return If the members has been saved.
    */
   public Boolean saveMemberRegistry(ArrayList<Member> r) {
-    return true; // = simulated Success
+    return true; // = Hard coded Success.
   }
 }

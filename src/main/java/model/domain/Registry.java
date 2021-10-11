@@ -39,7 +39,7 @@ public class Registry {
       m.setName(name);
       m.setPersonalNumber(personalNumber);
       members.add(m);
-      return true; // true if success
+      return true;
     } else {
       return false;
     }

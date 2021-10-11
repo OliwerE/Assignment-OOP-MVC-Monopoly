@@ -110,6 +110,6 @@ public class Registry {
         return m;
       }
     }
-    return new Member();
+    return null;
   }
 }

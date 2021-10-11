@@ -89,7 +89,6 @@ public class RegistryController {
 
     if (input == 1) {
       showMember(isVerbose);
-      backToMemberList(isVerbose);
     } else if (input == 2) {
       createMember();
       backToMemberList(isVerbose);
@@ -166,8 +165,6 @@ public class RegistryController {
       memberMenu(member, isVerbose);
     } else if (input == 6) {
       backToMemberList(isVerbose);
-      ui.displayMember(member);
-      memberMenu(member, isVerbose);
     } else {
       ui.displayMenuInputError(input);
       ui.displayMember(member);

@@ -32,7 +32,8 @@ public class RegistryController {
    * Display and handles main menu input.
    */
   private void mainMenu() {
-    ui.displayMainMenu();
+    String mainMenuText = "Verbose member list (1), compact member list (2), exit (3): ";
+    ui.printLine(mainMenuText);
     int input = ui.getScanner().getIntInput();
 
     if (input == 1) {
@@ -84,7 +85,8 @@ public class RegistryController {
    * @param isVerbose If member list is verbose.
    */
   private void memberListMenu(Boolean isVerbose) {
-    ui.displayMemberListMenu();
+    String memberListMenuText = "Show member (1), create member (2), delete member (3), main Menu (4): ";
+    ui.printLine(memberListMenuText);
     int input = ui.getScanner().getIntInput();
 
     if (input == 1) {
@@ -140,7 +142,10 @@ public class RegistryController {
    * @param isVerbose If the previous member list was verbose.
    */
   private void memberMenu(Member member, Boolean isVerbose) {
-    ui.displayMemberMenu();
+    // Gradle doesn't like long strings..
+    String memberMenuText1 = "Register boat (1), change boat type (2), change boat lenght (3)";
+    String memberMenuText2 = ", Change name (4), change personal number (5), back (6): ";
+    ui.printLine(memberMenuText1 + memberMenuText2);
     int input = ui.getScanner().getIntInput();
 
     if (input == 1) {
@@ -178,7 +183,7 @@ public class RegistryController {
    * @param member Owner of the boat.
    */
   private void registerBoat(Member member) {
-    Boolean isRegistered = member.registerBoat(ui.getBoatType(), ui.getBoatLength());
+    Boolean isRegistered = member.registerBoat(ui.getBoatType(member.getBoatTypesMenu()), ui.getBoatLength());
     ui.displayBoatRegisteredStatus(isRegistered);
   }
 
@@ -193,7 +198,7 @@ public class RegistryController {
       ui.boatDoesNotExistMessage();
     } else {
       Boat boat = member.getBoats().get(boatId - 1);
-      Boolean isChanged = member.changeBoatType(boat, ui.getBoatType());
+      Boolean isChanged = member.changeBoatType(boat, ui.getBoatType(member.getBoatTypesMenu()));
       ui.displayBoatUpdateMessage(isChanged);
     }
   }

@@ -75,6 +75,15 @@ public class Member {
   }
 
   /**
+   * Returns boat type menu string.
+
+   * @return Boat type menu string
+   */
+  public String getBoatTypesMenu() {
+    return "Enter boat type (1 = Sailboat, 2 = Motorsailer, 3 = Kayak/Canoe, 4 = Other): ";
+  }
+
+  /**
    * Register a new boat.
 
    * @param type Type of boat.

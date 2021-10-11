@@ -22,13 +22,6 @@ public class UserInterface extends StatusMessage {
   }
 
   /**
-   * Displays the main menu.
-   */
-  public void displayMainMenu() {
-    System.out.print("Verbose member list (1), compact member list (2), exit (3): ");
-  }
-
-  /**
    * Displays the verbose member list.
 
    * @param members Members from the registry.
@@ -116,13 +109,6 @@ public class UserInterface extends StatusMessage {
   }
 
   /**
-   * Displays member list menu.
-   */
-  public void displayMemberListMenu() {
-    System.out.print("Show member (1), create member (2), delete member (3), main Menu (4): ");
-  }
-
-  /**
    * Displays one member.
 
    * @param m Member to be displayed.
@@ -133,14 +119,6 @@ public class UserInterface extends StatusMessage {
     System.out.println("Personal number: " + m.getPersonalNumber());
     System.out.println("Id: " + m.getId());
     printBoats(m.getBoats());
-  }
-
-  /**
-   * Displays member menu.
-   */
-  public void displayMemberMenu() {
-    System.out.print("Register boat (1), change boat type (2), change boat lenght (3)");
-    System.out.print(", Change name (4), change personal number (5), back (6): ");
   }
 
   /**
@@ -185,8 +163,8 @@ public class UserInterface extends StatusMessage {
 
    * @return Boat type from user.
    */
-  public int getBoatType() {
-    System.out.print("Enter boat type (1 = Sailboat, 2 = Motorsailer, 3 = Kayak/Canoe, 4 = Other): ");
+  public int getBoatType(String inputText) {
+    System.out.print(inputText);
     return input.getIntInput();
   }
 

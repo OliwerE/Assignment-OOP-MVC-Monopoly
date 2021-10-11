@@ -21,5 +21,5 @@ interface RegistryPersistence {
    * @param r Members to save.
    * @return If the members has been saved.
    */
-  public Boolean saveMemberRegistry(ArrayList<Member> r);
+  public Boolean saveMemberRegistry(ArrayList<Member> registry);
 }

@@ -46,9 +46,18 @@ public class Registry {
   }
 
   /**
-   * Changes member name in the registry.
+   * Returns next available member id.
 
-   * @param m Member.
+   * @return Next available member id.
+   */
+  private int getNextId() {
+    return members.get(members.size() - 1).getId() + 1;
+  }
+
+  /**
+   * Changes member name in the registry.
+   * 
+   * @param m       Member.
    * @param newName New name.
    */
   public void changeMemberName(Member m, String newName) {
@@ -57,21 +66,12 @@ public class Registry {
 
   /**
    * Changes personal number in the registry.
-
-   * @param m Member.
+   * 
+   * @param m                 Member.
    * @param newPersonalNumber New personal number.
    */
   public void changePersonalNumber(Member m, int newPersonalNumber) {
     m.setPersonalNumber(newPersonalNumber);
-  }
-
-  /**
-   * Returns next available member id.
-
-   * @return Next available member id.
-   */
-  private int getNextId() {
-    return members.get(members.size() - 1).getId() + 1;
   }
 
   /**

@@ -1,7 +1,10 @@
 package controller;
 
+import javax.swing.plaf.synth.Region;
+
 import model.domain.Member;
 import model.persistence.RegistryStorage;
+import java.util.ArrayList;
 
 /**
  * Responsible for model-view communication.
@@ -236,7 +239,23 @@ public class RegistryController {
    */
   private void deleteMember() {
     console.deleteMemberMessage();
-    Boolean isRemoved = registry.deleteMember(console.getIntInput());
-    console.displayDeleteMemberStatus(isRemoved);
+    int memberId = console.getIntInput();
+    
+    ArrayList<Member> members = registry.getMembers();
+    Member memberToRemove;
+    Boolean isFound = false;
+    for (Member m : members) {
+      if (memberId == m.getId()) {
+        memberToRemove = m;
+        Boolean isRemoved = registry.deleteMember(memberToRemove);
+        console.displayDeleteMemberStatus(isRemoved);
+        isFound = true;
+        break;
+      }
+    }
+
+    if (!isFound) {
+      console.printLine("Can not remove non existing member.");
+    }
   }
 }

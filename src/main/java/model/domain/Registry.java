@@ -69,17 +69,9 @@ public class Registry {
    * @param memberId Unique id of the member to remove.
    * @return If the member has been removed
    */
-  public boolean deleteMember(int memberId) {
-    Boolean removed = false;
-    for (Member m : members) {
-      if (memberId == m.getId()) {
-        members.remove(m);
-        removed = true;
-        break;
-      }
-    }
-
-    if (removed) {
+  public boolean deleteMember(Member memberToRemove) {
+    if (members.contains(memberToRemove)) {
+      members.remove(memberToRemove);
       return true;
     } else {
       return false;

@@ -92,6 +92,11 @@ public class RegistryController {
     }
   }
 
+  /**
+   * Removes boat from member.
+
+   * @param m Boat owner.
+   */
   protected void removeBoat(Member m) {
     int boatNumber = ui.getBoatNumber();
     if (boatNumber <= m.getBoats().size()) {

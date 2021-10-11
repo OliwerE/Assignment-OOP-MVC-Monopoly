@@ -57,9 +57,9 @@ public class Registry {
 
   /**
    * Changes personal number in the registry.
-   * 
+
    * @param m Member.
-   * @param newName New personal number.
+   * @param newPersonalNumber New personal number.
    */
   public void changePersonalNumber(Member m, int newPersonalNumber) {
     m.setPersonalNumber(newPersonalNumber);

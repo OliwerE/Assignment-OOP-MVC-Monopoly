@@ -128,7 +128,7 @@ public class StatusMessage {
 
   /**
    * Displays remove boat status.
-   * 
+
    * @param isSuccess If the boat has been removed.
    */
   public void displayBoatRemovedMessage(Boolean isSuccess) {

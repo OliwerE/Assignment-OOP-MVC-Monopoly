@@ -120,17 +120,15 @@ public class Member {
    * @param newType New boat type.
    * @return If the boat has been updated.
    */
-  public Boolean changeBoatType(int boatId, Integer newType) { // flytta till Boat?
-    Boat b = boats.get(boatId - 1);
-
+  public Boolean changeBoatType(Boat boat, Integer newType) { // flytta till Boat?
     if (newType == 1) {
-      b.setBoatType("Sailboat");
+      boat.setBoatType("Sailboat");
     } else if (newType == 2) {
-      b.setBoatType("Motorsailer");
+      boat.setBoatType("Motorsailer");
     } else if (newType == 3) {
-      b.setBoatType("Kayak/Canoe");
+      boat.setBoatType("Kayak/Canoe");
     } else if (newType == 4) {
-      b.setBoatType("Other");
+      boat.setBoatType("Other");
     } else {
       return false;
     }
@@ -144,11 +142,9 @@ public class Member {
    * @param newLength New boat length.
    * @return If the boat has been updated.
    */
-  public Boolean changeBoatLength(int boatId, Integer newLength) { // flytta till Boat?
-    Boat b = boats.get(boatId - 1);
-    
+  public Boolean changeBoatLength(Boat boat, Integer newLength) { // flytta till Boat?
     if (newLength > 0) {
-      b.setBoatLength(newLength);
+      boat.setBoatLength(newLength);
       return true;
     } else {
       return false;

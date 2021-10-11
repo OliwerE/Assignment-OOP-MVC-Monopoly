@@ -1,8 +1,7 @@
 package controller;
 
-import javax.swing.plaf.synth.Region;
-
 import model.domain.Member;
+import model.domain.Boat;
 import model.persistence.RegistryStorage;
 import java.util.ArrayList;
 
@@ -73,8 +72,8 @@ public class RegistryController {
    */
   private void closeApplication() {
     console.displayCloseMessage();
-    console.closeScanner();
     saveToPersistentStorage();
+    console.closeScanner();
   }
 
   private void saveToPersistentStorage() {
@@ -200,8 +199,14 @@ public class RegistryController {
    * @param member Boat owner.
    */
   private void changeBoatType(Member member) {
-    Boolean isChanged = member.changeBoatType(console.getBoatId(), console.getBoatType());
-    console.displayBoatUpdateMessage(isChanged);
+    int boatId = console.getBoatId();
+    if (boatId > member.getBoats().size()) {
+      console.printLine("Boat does not exist!");
+    } else {
+      Boat boat = member.getBoats().get(boatId - 1);
+      Boolean isChanged = member.changeBoatType(boat, console.getBoatType());
+      console.displayBoatUpdateMessage(isChanged);
+    }
   }
 
   /**
@@ -210,8 +215,15 @@ public class RegistryController {
    * @param member Boat owner.
    */
   private void changeBoatLength(Member member) {
-    Boolean isChanged = member.changeBoatLength(console.getBoatId(), console.getBoatLength());
-    console.displayBoatUpdateMessage(isChanged);
+    int boatId = console.getBoatId();
+    if (boatId > member.getBoats().size()) {
+      console.printLine("Boat does not exist!");
+    } else {
+      Boat boat = member.getBoats().get(boatId - 1);
+      Boolean isChanged = member.changeBoatLength(boat, console.getBoatLength());
+      console.displayBoatUpdateMessage(isChanged);
+    }
+
   }
 
   /**

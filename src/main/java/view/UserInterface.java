@@ -155,8 +155,9 @@ public class UserInterface extends StatusMessage {
   /**
    * Display delete member message.
    */
-  public void deleteMemberMessage() {
+  public int getMemberId() {
     System.out.print("Enter member id: ");
+    return input.getIntInput();
   }
 
   /**

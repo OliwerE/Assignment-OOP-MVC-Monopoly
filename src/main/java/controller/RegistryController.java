@@ -125,8 +125,7 @@ public class RegistryController {
    * Handles removal of a member.
    */
   protected void deleteMember() {
-    ui.deleteMemberMessage();
-    int memberId = ui.getScanner().getIntInput();
+    int memberId = ui.getMemberId();
     
     ArrayList<Member> members = registry.getMembers();
     Member memberToRemove;

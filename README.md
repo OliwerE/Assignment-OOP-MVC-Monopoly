@@ -19,3 +19,6 @@ Note that this assignment will be automatically checked for plagiarism of source
 The application use a command line interface. Enter a number from the alternatives in the terminal and press enter.
 ## Missing parts
 The application does not have any missing grade 2 requirements.
+
+## Group
+I have not worked in a group.

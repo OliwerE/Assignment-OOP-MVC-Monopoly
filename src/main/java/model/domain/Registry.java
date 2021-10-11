@@ -9,15 +9,6 @@ public class Registry {
   private ArrayList<Member> members = new ArrayList<>();;
 
   /**
-   * Constructs boat registry .
-   */
-  /*
-  public Registry() {
-    members = storage.loadMemberRegistry();
-  }
-  */
-
-  /**
    * Adds persistent member to the members registry.
 
    * @param name Name of the member.

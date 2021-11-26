@@ -30,19 +30,13 @@ public class Registry {
 
    * @param name  Name of the new member.
    * @param personalNumber Personal number.
-   * @return If the member has been created.
    */
-  public Boolean createMember(String name, int personalNumber) {
-    if (name.length() > 0) {
-      Member m = new Member();
-      m.setId(getNextId());
-      m.setName(name);
-      m.setPersonalNumber(personalNumber);
-      members.add(m);
-      return true;
-    } else {
-      return false;
-    }
+  public void createMember(String name, int personalNumber) {
+    Member m = new Member();
+    m.setId(getNextId());
+    m.setName(name);
+    m.setPersonalNumber(personalNumber);
+    members.add(m);
   }
 
   /**

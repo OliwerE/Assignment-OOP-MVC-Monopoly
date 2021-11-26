@@ -132,8 +132,13 @@ public class RegistryController {
   protected void createMember() {
     String name = ui.getMemberName();
     int personalNumber = ui.getPersonalNumber();
-    Boolean isRegistered = registry.createMember(name, personalNumber);
-    ui.displayRegisterMemberStatus(isRegistered);
+
+    if (name.length() > 0 && personalNumber != -1) {
+      registry.createMember(name, personalNumber);
+      ui.displayRegisterMemberStatus(true);
+    } else {
+      ui.displayRegisterMemberStatus(false);
+    }
   }
 
   /**

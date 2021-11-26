@@ -18,6 +18,7 @@ public class UserInput {
     try {
       return scanner.nextInt();
     } catch (InputMismatchException e) {
+      scanner.next();
       System.out.println(e);
       return -1;
     }

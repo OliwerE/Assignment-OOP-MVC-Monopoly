@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import model.domain.Member;
-import view.UserInput;
 import view.UserInterface.MainMenuInput;
 import view.UserInterface.MemberListMenuInput;
 import view.UserInterface.MemberMenuInput;

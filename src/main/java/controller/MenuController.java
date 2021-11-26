@@ -110,7 +110,7 @@ public class MenuController {
 
    * @param isVerbose If the previous member list was verbose.
    */
-  private void showMember(Boolean isVerbose) { // remove input from showMember!
+  private void showMember(Boolean isVerbose) {
     int memberId = ui.getMemberId();
     ArrayList<Member> members = registryController.getRegistry().getMembers();
     

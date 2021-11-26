@@ -31,11 +31,20 @@ public class Registry {
    * @param name  Name of the new member.
    * @param personalNumber Personal number.
    */
-  public void createMember(String name, int personalNumber) {
+  public Member createMember(String name, int personalNumber) {
     Member m = new Member();
     m.setId(getNextId());
     m.setName(name);
     m.setPersonalNumber(personalNumber);
+    return m;
+  }
+
+  /**
+   * Add member to registry.
+
+   * @param m The member to be added.
+   */
+  public void addMember(Member m) {
     members.add(m);
   }
 

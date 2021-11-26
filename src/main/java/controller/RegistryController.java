@@ -134,7 +134,8 @@ public class RegistryController {
     int personalNumber = ui.getPersonalNumber();
 
     if (name.length() > 0 && personalNumber != -1) {
-      registry.createMember(name, personalNumber);
+      Member m = registry.createMember(name, personalNumber);
+      registry.addMember(m);
       ui.displayRegisterMemberStatus(true);
     } else {
       ui.displayRegisterMemberStatus(false);

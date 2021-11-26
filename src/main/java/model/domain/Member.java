@@ -90,7 +90,7 @@ public class Member {
    * @param boat Boat to modify.
    * @param newType New boat type.
    */
-  protected void changeBoatType(Boat boat, BoatType newType) { // flytta till Boat?
+  protected void changeBoatType(Boat boat, BoatType newType) {
     boat.setBoatType(newType);
   }
 

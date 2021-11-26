@@ -76,16 +76,25 @@ public class Member {
   }
 
   /**
-   * Register a new boat.
+   * Creates a new boat.
 
    * @param boatType Type of boat.
    * @param length Length of boat.
    */
-  public void registerBoat(BoatType boatType, int length) {
+  public Boat createBoat(BoatType boatType, int length) {
     Boat newBoat = new Boat();
     newBoat.setBoatType(boatType);
     newBoat.setBoatLength(length);
-    boats.add(newBoat);
+    return newBoat;
+  }
+
+  /**
+   * Add boat to member.
+
+   * @param b Boat to be added.
+   */
+  public void addBoat(Boat b) {
+    boats.add(b);
   }
 
   /**
@@ -93,15 +102,9 @@ public class Member {
 
    * @param boat Boat to modify.
    * @param newType New boat type.
-   * @return If the boat has been updated.
    */
-  public Boolean changeBoatType(Boat boat, BoatType newType) { // flytta till Boat?
-    if (boats.contains(boat)) {
-      boat.setBoatType(newType);
-      return true;
-    } else {
-      return false;
-    }
+  public void changeBoatType(Boat boat, BoatType newType) { // flytta till Boat?
+    boat.setBoatType(newType);
   }
 
   /**
@@ -109,33 +112,17 @@ public class Member {
 
    * @param boat  Boat to modify.
    * @param newLength New boat length.
-   * @return If the boat has been updated.
    */
-  public Boolean changeBoatLength(Boat boat, Integer newLength) {
-    if (boats.contains(boat)) {
-      if (newLength > 0) {
-        boat.setBoatLength(newLength);
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
+  public void changeBoatLength(Boat boat, Integer newLength) {
+    boat.setBoatLength(newLength);
   }
 
   /**
    * Removes a boat.
 
    * @param b  Boat to remove.
-   * @return If the boat has been removed.
    */
-  public Boolean removeBoat(Boat b) {
-    boats.remove(b);
-    if (boats.contains(b)) {
-      return false;
-    } else {
-      return true;
-    }
+  public void removeBoat(Boat b) {
+      boats.remove(b);
   }
 }

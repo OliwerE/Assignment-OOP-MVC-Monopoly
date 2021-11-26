@@ -110,12 +110,8 @@ public class StatusMessage {
 
    * @param isSuccess If the boat has been updated.
    */
-  public void displayBoatUpdateMessage(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.println("Boat has been updated!");
-    } else {
-      System.out.println("Boat has not been updated.");
-    }
+  public void displayBoatUpdateMessage() {
+    System.out.println("Boat has been updated!");
   }
 
   /**
@@ -123,11 +119,7 @@ public class StatusMessage {
 
    * @param isSuccess If the boat has been removed.
    */
-  public void displayBoatRemovedMessage(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.println("Boat has been removed!");
-    } else {
-      System.out.println("Boat has not been removed.");
-    }
+  public void displayBoatRemovedMessage() {
+    System.out.println("Boat has been removed!");
   }
 }

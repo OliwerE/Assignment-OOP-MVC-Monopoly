@@ -56,8 +56,8 @@ public class RegistryController {
    * @param member Owner of the boat.
    */
   protected void registerBoat(Member member) {
-    Boat b = member.createBoat(ui.getBoatType(), ui.getBoatLength());
-    member.addBoat(b);
+    Boat b = registry.createBoat(ui.getBoatType(), ui.getBoatLength());
+    registry.addBoat(member, b);
     ui.displayBoatRegisteredStatus();
   }
 
@@ -72,7 +72,7 @@ public class RegistryController {
       ui.boatDoesNotExistMessage();
     } else {
       Boat boat = member.getBoats().get(boatId - 1);
-      member.changeBoatType(boat, ui.getBoatType());
+      registry.changeBoatType(member, boat, ui.getBoatType());
       ui.displayBoatUpdateMessage();
     }
   }
@@ -88,7 +88,7 @@ public class RegistryController {
       ui.boatDoesNotExistMessage();
     } else {
       Boat boat = member.getBoats().get(boatId - 1);
-      member.changeBoatLength(boat, ui.getBoatLength());
+      registry.changeBoatLength(member, boat, ui.getBoatLength());
       ui.displayBoatUpdateMessage();
     }
   }
@@ -102,7 +102,7 @@ public class RegistryController {
     int boatNumber = ui.getBoatNumber();
     if (boatNumber <= m.getBoats().size()) {
       Boat b = m.getBoats().get(boatNumber - 1);
-      m.removeBoat(b);
+      registry.removeBoat(m, b);
       ui.displayBoatRemovedMessage();
     } else {
       ui.displayBoatRemovedMessage();

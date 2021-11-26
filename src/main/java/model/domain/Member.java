@@ -76,24 +76,11 @@ public class Member {
   }
 
   /**
-   * Creates a new boat.
-
-   * @param boatType Type of boat.
-   * @param length Length of boat.
-   */
-  public Boat createBoat(BoatType boatType, int length) {
-    Boat newBoat = new Boat();
-    newBoat.setBoatType(boatType);
-    newBoat.setBoatLength(length);
-    return newBoat;
-  }
-
-  /**
    * Add boat to member.
 
    * @param b Boat to be added.
    */
-  public void addBoat(Boat b) {
+  protected void addBoat(Boat b) {
     boats.add(b);
   }
 
@@ -103,7 +90,7 @@ public class Member {
    * @param boat Boat to modify.
    * @param newType New boat type.
    */
-  public void changeBoatType(Boat boat, BoatType newType) { // flytta till Boat?
+  protected void changeBoatType(Boat boat, BoatType newType) { // flytta till Boat?
     boat.setBoatType(newType);
   }
 
@@ -113,7 +100,7 @@ public class Member {
    * @param boat  Boat to modify.
    * @param newLength New boat length.
    */
-  public void changeBoatLength(Boat boat, Integer newLength) {
+  protected void changeBoatLength(Boat boat, Integer newLength) {
     boat.setBoatLength(newLength);
   }
 
@@ -122,7 +109,7 @@ public class Member {
 
    * @param b  Boat to remove.
    */
-  public void removeBoat(Boat b) {
+  protected void removeBoat(Boat b) {
     boats.remove(b);
   }
 }

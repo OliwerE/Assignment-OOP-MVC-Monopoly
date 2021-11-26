@@ -1,6 +1,7 @@
 package model.domain;
 
 import java.util.ArrayList;
+import model.domain.Boat.BoatType;
 
 /**
  * Responsible for boat registry.
@@ -114,5 +115,61 @@ public class Registry {
       }
     }
     return null;
+  }
+
+  /**
+   * Creates a new boat.
+
+   * @param boatType Type of boat.
+   * @param length Length of boat.
+   * @return The new boat.
+   */
+  public Boat createBoat(BoatType boatType, int length) {
+    Boat newBoat = new Boat();
+    newBoat.setBoatType(boatType);
+    newBoat.setBoatLength(length);
+    return newBoat;
+  }
+
+  /**
+   * Adds new boat to a member.
+
+   * @param m Add new boat to.
+   * @param b New boat.
+   */
+  public void addBoat(Member m, Boat b) {
+    m.addBoat(b);
+  }
+
+  /**
+   * Changes boat type.
+
+   * @param m Boat owner.
+   * @param boat Boat to be changed.
+   * @param newType New boat type.
+   */
+  public void changeBoatType(Member m, Boat boat, BoatType newType) {
+    m.changeBoatType(boat, newType);
+  }
+
+  /**
+   * Changes boat length.
+
+   * @param m Boat owner.
+   * @param boat Boat to be changed. 
+   * @param newLength New boat length.
+   */
+  public void changeBoatLength(Member m, Boat boat, int newLength) {
+    m.changeBoatLength(boat, newLength);
+  }
+
+  /**
+   * Removes a boat from a member.
+
+   * @param m Boat owner.
+   * @param b Boat to be removed.
+   */
+  public void removeBoat(Member m, Boat b) {
+    m.removeBoat(b);
   }
 }

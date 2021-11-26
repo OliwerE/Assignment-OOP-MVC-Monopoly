@@ -26,13 +26,13 @@ public class RegistryStorage implements RegistryPersistence {
 
       // Add boats
       if (i == 0) {
-        Boat b1 = m.createBoat(BoatType.Sailboat, 200);
-        m.addBoat(b1);
-        Boat b2 = m.createBoat(BoatType.KayakCanoe, 100);
-        m.addBoat(b2);
+        Boat b1 = registry.createBoat(BoatType.Sailboat, 200);
+        registry.addBoat(m, b1);
+        Boat b2 = registry.createBoat(BoatType.KayakCanoe, 100);
+        registry.addBoat(m, b2);
       } else if (i == 2) {
-        Boat b3 = m.createBoat(BoatType.Motorsailer, 150);
-        m.addBoat(b3);
+        Boat b3 = registry.createBoat(BoatType.Motorsailer, 150);
+        registry.addBoat(m, b3);
       }
     }
     return true; // = Hard coded success.

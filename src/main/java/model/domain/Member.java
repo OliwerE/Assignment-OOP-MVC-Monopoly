@@ -123,6 +123,6 @@ public class Member {
    * @param b  Boat to remove.
    */
   public void removeBoat(Boat b) {
-      boats.remove(b);
+    boats.remove(b);
   }
 }

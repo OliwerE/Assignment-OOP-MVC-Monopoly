@@ -1,8 +1,8 @@
 package model.persistence;
 
 import java.util.ArrayList;
-import model.domain.Boat.BoatType;
 import model.domain.Boat;
+import model.domain.Boat.BoatType;
 import model.domain.Member;
 import model.domain.Registry;
 

@@ -10,6 +10,101 @@ import model.domain.Member;
 public class UserInterface extends StatusMessage {
   private UserInput input = new UserInput();
 
+  /**
+   * Main menu input alternatives.
+   */
+  public enum MainMenuInput {
+    Verbose, Compact, Exit, Error
+  }
+
+  /**
+   * Member list menu alternatives.
+   */
+  public enum MemberListMenuInput {
+    ShowMember, CreateMember, DeleteMember, MainMenu, Error
+  }
+
+  /**
+   * Member menu alternatives.
+   */
+  public enum MemberMenuInput {
+    RegisterBoat, ChangeBoatType, ChangeBoatLength, RemoveBoat, ChangeName, ChangePersonalNumber, MemberListMenu, Error
+  }
+
+  /**
+   * Request and return user input from the main menu.
+
+   * @return User input.
+   */
+  public MainMenuInput mainMenu() {
+    this.printLine("Verbose member list (1), compact member list (2), exit (3): ");
+    int userInput = input.getIntInput();
+
+    if (userInput == 1) {
+      return MainMenuInput.Verbose;
+    } else if (userInput == 2) {
+      return MainMenuInput.Compact;
+    } else if (userInput == 3) {
+      return MainMenuInput.Exit;
+    } else {
+      return MainMenuInput.Error;
+    }
+  }
+
+  /**
+   * Request and return user input from the member list menu.
+
+   * @return User input.
+   */
+  public MemberListMenuInput memberListMenu() {
+    this.printLine("Show member (1), create member (2), delete member (3), main Menu (4): ");
+    int userInput = input.getIntInput();
+
+    if (userInput == 1) {
+      return MemberListMenuInput.ShowMember;
+    } else if (userInput == 2) {
+      return MemberListMenuInput.CreateMember;
+    } else if (userInput == 3) {
+      return MemberListMenuInput.DeleteMember;
+    } else if (userInput == 4) {
+      return MemberListMenuInput.MainMenu;
+    } else {
+      return MemberListMenuInput.Error;
+    }
+  }
+
+  /**
+   * Request and return user input from the member menu.
+
+   * @return User input.
+   */
+  public MemberMenuInput memberMenu() {
+    // Gradle doesn't like long strings...
+    String memberMenuText1 = "Register boat (1), change boat type (2), change boat lenght (3)";
+    String memberMenuText2 = ", remove boat(4), Change name (5), change personal number (6), back (7): ";
+    this.printLine(memberMenuText1 + memberMenuText2);
+    int userInput = input.getIntInput();
+
+    if (userInput == 1) {
+      return MemberMenuInput.RegisterBoat;
+    } else if (userInput == 2) {
+      return MemberMenuInput.ChangeBoatType;
+    } else if (userInput == 3) {
+      return MemberMenuInput.ChangeBoatLength;
+    } else if (userInput == 4) {
+      return MemberMenuInput.RemoveBoat;
+    } else if (userInput == 5) {
+      return MemberMenuInput.ChangeName;
+    } else if (userInput == 6) {
+      return MemberMenuInput.ChangePersonalNumber;
+    } else if (userInput == 7) {
+      return MemberMenuInput.MemberListMenu;
+    } else {
+      return MemberMenuInput.Error;
+    }
+
+  }
+
   public UserInput getScanner() {
     return input;
   }

@@ -67,11 +67,9 @@ public class StatusMessage {
 
   /**
    * Displays menu input error.
-
-   * @param input Input from user.
    */
-  public void displayMenuInputError(int input) {
-    System.out.println(input + " is not an alternative!");
+  public void displayMenuInputError() {
+    System.out.println("Not an alternative!");
   }
 
   /**

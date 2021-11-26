@@ -3,6 +3,9 @@ package controller;
 import java.util.ArrayList;
 import model.domain.Member;
 import view.UserInput;
+import view.UserInterface.MainMenuInput;
+import view.UserInterface.MemberListMenuInput;
+import view.UserInterface.MemberMenuInput;
 
 /**
  * Responsible for the menus in the user interface.
@@ -20,23 +23,21 @@ public class MenuController {
     mainMenu();
   }
 
+  
   /**
    * Display and handles main menu input.
    */
   private void mainMenu() {
-    String mainMenuText = "Verbose member list (1), compact member list (2), exit (3): ";
-    ui.printLine(mainMenuText);
-    UserInput scanner = ui.getScanner();
-    int input = scanner.getIntInput();
+    MainMenuInput input = ui.mainMenu();
 
-    if (input == 1) {
+    if (input == MainMenuInput.Verbose) {
       verboseMemberList();
-    } else if (input == 2) {
+    } else if (input == MainMenuInput.Compact) {
       compactMemberList();
-    } else if (input == 3) {
+    } else if (input == MainMenuInput.Exit) {
       closeApplication();
     } else {
-      ui.displayMenuInputError(input);
+      ui.displayMenuInputError();
       mainMenu();
     }
   }
@@ -74,23 +75,20 @@ public class MenuController {
    * @param isVerbose If member list is verbose.
    */
   private void memberListMenu(Boolean isVerbose) {
-    String memberListMenuText = "Show member (1), create member (2), delete member (3), main Menu (4): ";
-    ui.printLine(memberListMenuText);
-    UserInput scanner = ui.getScanner();
-    int input = scanner.getIntInput();
+    MemberListMenuInput input = ui.memberListMenu();
 
-    if (input == 1) {
+    if (input == MemberListMenuInput.ShowMember) {
       showMember(isVerbose);
-    } else if (input == 2) {
+    } else if (input == MemberListMenuInput.CreateMember) {
       registryController.createMember();
       backToMemberList(isVerbose);
-    } else if (input == 3) {
+    } else if (input == MemberListMenuInput.DeleteMember) {
       registryController.deleteMember();
       backToMemberList(isVerbose);
-    } else if (input == 4) {
+    } else if (input == MemberListMenuInput.MainMenu) {
       mainMenu();
     } else {
-      ui.displayMenuInputError(input);
+      ui.displayMenuInputError();
       backToMemberList(isVerbose);
     }
   }
@@ -141,40 +139,36 @@ public class MenuController {
    * @param isVerbose If the previous member list was verbose.
    */
   private void memberMenu(Member member, Boolean isVerbose) {
-    // Gradle doesn't like long strings...
-    String memberMenuText1 = "Register boat (1), change boat type (2), change boat lenght (3)";
-    String memberMenuText2 = ", remove boat(4), Change name (5), change personal number (6), back (7): ";
-    ui.printLine(memberMenuText1 + memberMenuText2);
-    int input = ui.getScanner().getIntInput();
+    MemberMenuInput input = ui.memberMenu();
 
-    if (input == 1) {
+    if (input == MemberMenuInput.RegisterBoat) {
       registryController.registerBoat(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
-    } else if (input == 2) {
+    } else if (input == MemberMenuInput.ChangeBoatType) {
       registryController.changeBoatType(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
-    } else if (input == 3) {
+    } else if (input == MemberMenuInput.ChangeBoatLength) {
       registryController.changeBoatLength(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
-    } else if (input == 4) {
+    } else if (input == MemberMenuInput.RemoveBoat) {
       registryController.removeBoat(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
-    } else if (input == 5) {
+    } else if (input == MemberMenuInput.ChangeName) {
       registryController.changeName(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
-    } else if (input == 6) {
+    } else if (input == MemberMenuInput.ChangePersonalNumber) {
       registryController.changePersonalNumber(member);
       ui.displayMember(member);
       memberMenu(member, isVerbose);
-    } else if (input == 7) {
+    } else if (input == MemberMenuInput.MemberListMenu) {
       backToMemberList(isVerbose);
     } else {
-      ui.displayMenuInputError(input);
+      ui.displayMenuInputError();
       ui.displayMember(member);
       memberMenu(member, isVerbose);
     }

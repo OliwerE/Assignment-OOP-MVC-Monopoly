@@ -99,16 +99,10 @@ public class StatusMessage {
   }
 
   /**
-   * Displays register boat status.
-
-   * @param isSuccess If the boat has been registered.
+   * Success message for register boat.
    */
-  public void displayBoatRegisteredStatus(Boolean isSuccess) {
-    if (isSuccess) {
-      System.out.print("Boat has been registered!");
-    } else {
-      System.out.print("Boat has not been registered.");
-    }
+  public void displayBoatRegisteredStatus() {
+    System.out.print("Boat has been registered!");
   }
 
   /**

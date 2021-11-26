@@ -1,6 +1,7 @@
 package model.persistence;
 
 import java.util.ArrayList;
+import model.domain.Boat.BoatType;
 import model.domain.Member;
 import model.domain.Registry;
 
@@ -24,10 +25,10 @@ public class RegistryStorage implements RegistryPersistence {
 
       // Add boats
       if (i == 0) {
-        m.registerBoat(1, 200);
-        m.registerBoat(3, 100);
+        m.registerBoat(BoatType.Sailboat, 200);
+        m.registerBoat(BoatType.KayakCanoe, 100);
       } else if (i == 2) {
-        m.registerBoat(2, 150);
+        m.registerBoat(BoatType.Motorsailer, 150);
       }
     }
     return true; // = Hard coded success.

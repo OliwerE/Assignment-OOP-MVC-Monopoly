@@ -56,8 +56,8 @@ public class RegistryController {
    * @param member Owner of the boat.
    */
   protected void registerBoat(Member member) {
-    Boolean isRegistered = member.registerBoat(ui.getBoatType(member.getBoatTypesMenu()), ui.getBoatLength());
-    ui.displayBoatRegisteredStatus(isRegistered);
+    member.registerBoat(ui.getBoatType(), ui.getBoatLength());
+    ui.displayBoatRegisteredStatus();
   }
 
   /**
@@ -71,7 +71,7 @@ public class RegistryController {
       ui.boatDoesNotExistMessage();
     } else {
       Boat boat = member.getBoats().get(boatId - 1);
-      Boolean isChanged = member.changeBoatType(boat, ui.getBoatType(member.getBoatTypesMenu()));
+      Boolean isChanged = member.changeBoatType(boat, ui.getBoatType());
       ui.displayBoatUpdateMessage(isChanged);
     }
   }

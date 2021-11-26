@@ -4,15 +4,22 @@ package model.domain;
  * Represent registered boat.
  */
 public class Boat {
-  private String boatType;
+  private BoatType boatType;
   private int boatLength;
+
+  /**
+   * Boat type alternatives.
+   */
+  public enum BoatType {
+    Sailboat, Motorsailer, KayakCanoe, Other
+  }
 
   /**
    * Returns the boat type.
 
    * @return Boat type.
    */
-  public String getBoatType() {
+  public BoatType getBoatType() {
     return boatType;
   }
 
@@ -21,7 +28,7 @@ public class Boat {
 
    * @param boatType A new boat type.
    */
-  protected void setBoatType(String boatType) {
+  protected void setBoatType(BoatType boatType) {
     this.boatType = boatType;
   }
 

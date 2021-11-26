@@ -1,6 +1,7 @@
 package model.domain;
 
 import java.util.ArrayList;
+import model.domain.Boat.BoatType;
 
 /**
  * Represent a member in the registry.
@@ -75,37 +76,16 @@ public class Member {
   }
 
   /**
-   * Returns boat type menu string.
-
-   * @return Boat type menu string
-   */
-  public String getBoatTypesMenu() {
-    return "Enter boat type (1 = Sailboat, 2 = Motorsailer, 3 = Kayak/Canoe, 4 = Other): ";
-  }
-
-  /**
    * Register a new boat.
 
-   * @param type Type of boat.
+   * @param boatType Type of boat.
    * @param length Length of boat.
-   * @return If boat has been registered.
    */
-  public Boolean registerBoat(int type, int length) {
+  public void registerBoat(BoatType boatType, int length) {
     Boat newBoat = new Boat();
-    if (type == 1) {
-      newBoat.setBoatType("Sailboat");
-    } else if (type == 2) {
-      newBoat.setBoatType("Motorsailer");
-    } else if (type == 3) {
-      newBoat.setBoatType("Kayak/Canoe");
-    } else if (type == 4) {
-      newBoat.setBoatType("Other");
-    } else {
-      return false;
-    }
+    newBoat.setBoatType(boatType);
     newBoat.setBoatLength(length);
     boats.add(newBoat);
-    return true;
   }
 
   /**
@@ -115,19 +95,9 @@ public class Member {
    * @param newType New boat type.
    * @return If the boat has been updated.
    */
-  public Boolean changeBoatType(Boat boat, Integer newType) { // flytta till Boat?
+  public Boolean changeBoatType(Boat boat, BoatType newType) { // flytta till Boat?
     if (boats.contains(boat)) {
-      if (newType == 1) {
-        boat.setBoatType("Sailboat");
-      } else if (newType == 2) {
-        boat.setBoatType("Motorsailer");
-      } else if (newType == 3) {
-        boat.setBoatType("Kayak/Canoe");
-      } else if (newType == 4) {
-        boat.setBoatType("Other");
-      } else {
-        return false;
-      }
+      boat.setBoatType(newType);
       return true;
     } else {
       return false;
@@ -141,7 +111,7 @@ public class Member {
    * @param newLength New boat length.
    * @return If the boat has been updated.
    */
-  public Boolean changeBoatLength(Boat boat, Integer newLength) { // flytta till Boat?
+  public Boolean changeBoatLength(Boat boat, Integer newLength) {
     if (boats.contains(boat)) {
       if (newLength > 0) {
         boat.setBoatLength(newLength);

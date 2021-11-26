@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 import model.domain.Boat;
+import model.domain.Boat.BoatType;
 import model.domain.Member;
 
 /**
@@ -183,8 +184,28 @@ public class UserInterface extends StatusMessage {
     for (int j = 0; j < boats.size(); j++) {
       System.out.println("----");
       System.out.println("Boat : " + Integer.toString(j + 1));
-      System.out.println("Type: " + boats.get(j).getBoatType());
+      System.out.println("Type: " + boatTypeToString(boats.get(j)));
       System.out.println("Length: " + boats.get(j).getBoatLength());
+    }
+  }
+
+  /**
+   * Converts boat type enumeration to string.
+
+   * @param b Get boat type from.
+   * @return Boat type string.
+   */
+  private String boatTypeToString(Boat b) {
+    BoatType type = b.getBoatType();
+
+    if (type == BoatType.Sailboat) {
+      return "Sailboat";
+    } else if (type == BoatType.Motorsailer) {
+      return "Motorsailer";
+    } else if (type == BoatType.KayakCanoe) {
+      return "Kayak/Canoe";
+    } else {
+      return "Other";
     }
   }
 
@@ -260,9 +281,23 @@ public class UserInterface extends StatusMessage {
 
    * @return Boat type from user.
    */
-  public int getBoatType(String inputText) {
-    System.out.print(inputText);
-    return input.getIntInput();
+  public BoatType getBoatType() {
+    while (true) {
+      System.out.print("Enter boat type (1 = Sailboat, 2 = Motorsailer, 3 = Kayak/Canoe, 4 = Other): ");
+      int userInput = input.getIntInput();
+
+      if (userInput == 1) {
+        return BoatType.Sailboat;
+      } else if (userInput == 2) {
+        return BoatType.Motorsailer;
+      } else if (userInput == 3) {
+        return BoatType.KayakCanoe;
+      } else if (userInput == 4) {
+        return BoatType.Other;
+      } else {
+        continue;
+      }
+    }
   }
 
   /**
